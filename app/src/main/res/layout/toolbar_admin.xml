@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:layoutDirection="ltr"
+    >
+
+
+    <ImageView
+        android:id="@+id/tb_admin_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_menu"
+        android:tint="@color/whit_h"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/logo"
+            android:layout_centerInParent="true"
+
+            />
+
+        <ImageView
+            android:id="@+id/tb_admin_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more"
+            android:layout_alignParentRight="true"
+            android:tint="@android:color/darker_gray"
+            />
+        <ImageView
+            android:id="@+id/tb_admin_noti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_notifications"
+            android:layout_toLeftOf="@+id/tb_admin_more"
+            android:tint="@android:color/darker_gray"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_20sdp"
+            />
+
+
+    </RelativeLayout>
+
+</androidx.appcompat.widget.Toolbar>

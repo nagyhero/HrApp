@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.SubmitAddFragment">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      >
+
+      <LinearLayout
+          android:layout_marginTop="@dimen/_10sdp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layoutDirection="ltr"
+          android:layout_marginHorizontal="@dimen/_2sdp"
+          >
+
+          <TextView
+              android:layout_width="@dimen/_70sdp"
+              android:layout_height="wrap_content"
+              android:textSize="@dimen/_10sdp"
+              android:textColor="@android:color/black"
+              android:fontFamily="@font/pop_extra_light_italic"
+              android:text="@string/new_password"
+              android:textAlignment="center"
+              android:layout_gravity="center"
+              />
+
+          <EditText
+
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/rectangle_stroke"
+              android:padding="@dimen/_6sdp"
+              android:inputType="textPassword"
+              android:hint="@string/password"
+              />
+      </LinearLayout>
+
+
+      <LinearLayout
+          android:layout_marginTop="@dimen/_10sdp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layoutDirection="ltr"
+          android:layout_marginHorizontal="@dimen/_2sdp"
+          >
+
+          <TextView
+              android:layout_width="@dimen/_70sdp"
+              android:layout_height="wrap_content"
+              android:textSize="@dimen/_10sdp"
+              android:textColor="@android:color/black"
+              android:fontFamily="@font/pop_extra_light_italic"
+              android:text="@string/verify_password"
+              android:textAlignment="center"
+              android:layout_gravity="center"
+              />
+
+          <EditText
+
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/rectangle_stroke"
+              android:padding="@dimen/_6sdp"
+              android:inputType="textPassword"
+              android:hint="@string/password"
+              />
+      </LinearLayout>
+  </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

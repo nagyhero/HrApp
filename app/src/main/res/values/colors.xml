@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3e3f62</color>
+    <color name="colorPrimaryDark">#282a3c</color>
+    <color name="colorAccent">#fd397a</color>
+
+    <color name="custom1">#5d78ff</color>
+    <color name="custom2">#5867dd</color>
+    <color name="custom3">#0abb87</color>
+    <color name="custom4">#5578eb</color>
+    <color name="custom5">#ffb822</color>
+
+
+
+
+    <color name="whit_h">#A6FFFFFF</color>
+    <color name="hollow">#3BFFFFFF</color>
+    <color name="hollowcustom">#4D162574</color>
+    <color name="hollowcustom2">#eef1ff</color>
+    <color name="hollowcustom3">#6AEEF1FF</color>
+    <color name="hollowcustom4">#fff8e8</color>
+    <color name="hollowcustom5">#ffebf1</color>
+    <color name="hollowcustom6">#e6f8f3</color>
+
+
+</resources>

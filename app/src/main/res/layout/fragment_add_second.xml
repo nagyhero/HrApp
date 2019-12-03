@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.SecondAddFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--group buttons role-->
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layoutDirection="ltr"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            >
+
+
+
+            <TextView
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/pop_extra_light_italic"
+                android:text="@string/user_role"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                />
+
+            <RadioGroup
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layoutDirection="ltr"
+                >
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin"/>
+
+                <RadioButton
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr"/>
+                <RadioButton
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user"/>
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+
+    <!--calender-->
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="ltr"
+        android:layout_marginHorizontal="@dimen/_2sdp"
+        >
+
+        <TextView
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/pop_extra_light_italic"
+            android:text="@string/hiring_date"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1/2/2019"
+            android:textColor="@color/custom1"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+
+
+
+        <!--company branch-->
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layoutDirection="ltr"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            >
+
+            <TextView
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/pop_extra_light_italic"
+                android:text="@string/company_branch"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="fill_parent"
+               android:orientation="horizontal"
+               android:layoutDirection="ltr"
+               android:weightSum="6">
+
+               <androidx.appcompat.widget.AppCompatSpinner
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:layout_weight="4"/>
+
+           </LinearLayout>
+        </LinearLayout>
+
+        <!--department branch-->
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layoutDirection="ltr"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            >
+
+            <TextView
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/pop_extra_light_italic"
+                android:text="@string/department"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:layoutDirection="ltr"
+                android:weightSum="6">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <!--job title-->
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layoutDirection="ltr"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            >
+
+            <TextView
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/pop_extra_light_italic"
+                android:text="@string/job_title"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:layoutDirection="ltr"
+                android:weightSum="6">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <!--Userd Shift-->
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layoutDirection="ltr"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            >
+
+            <TextView
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/pop_extra_light_italic"
+                android:text="@string/userd_shift"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:layoutDirection="ltr"
+                android:weightSum="6">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <!--salary-->
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layoutDirection="ltr"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            >
+
+            <TextView
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/pop_extra_light_italic"
+                android:text="@string/salary"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                />
+
+            <EditText
+
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_stroke"
+                android:padding="@dimen/_6sdp"
+                android:inputType="numberDecimal"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
