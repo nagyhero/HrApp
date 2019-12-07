@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.supportingonline.hrapp">
+    package="com.SmartTech.hrapp">
 
     <dist:module dist:instant="true" />
 
@@ -19,25 +19,25 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
         <activity
-            android:name=".AddUserActivity"
+            android:name="com.SmartTech.hrapp.AddUserActivity"
             android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
-        <activity android:name=".SettingActivity" />
+        <activity android:name="com.SmartTech.hrapp.SettingActivity" />
         <activity
-            android:name=".NotificationsActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
-        <activity
-            android:name=".Activites.Users.UsersActivity"
+            android:name="com.SmartTech.hrapp.NotificationsActivity"
             android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
         <activity
-            android:name=".UserActivity"
+            android:name="com.SmartTech.hrapp.Activites.Users.UsersActivity"
             android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
         <activity
-            android:name=".Activites.Home.HomeActivity"
+            android:name="com.SmartTech.hrapp.UserActivity"
             android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
         <activity
-            android:name=".Activites.Login.LoginActivity"
+            android:name="com.SmartTech.hrapp.Activites.Home.HomeActivity"
             android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name="com.SmartTech.hrapp.Activites.Login.LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
+        <activity android:name="com.SmartTech.hrapp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
