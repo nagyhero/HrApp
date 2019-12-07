@@ -24,12 +24,8 @@ public class MainActivity extends MyActivity {
             startActivity(new Intent(this,LoginActivity.class));
         }else {
             Log.d("role",getRole());
-            if (getRole().equals("hr")) {
                 startActivity(new Intent(this, HomeActivity.class));
-            }else if (getRole().equals("user")){
-                startActivity(new Intent(this, HomeUserActivity.class));
 
-            }
 
         }
         finish();

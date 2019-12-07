@@ -1,6 +1,5 @@
 package com.supportingonline.hrapp;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -14,9 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.supportingonline.hrapp.Adapter.ViewPagerAdapter;
-import com.supportingonline.hrapp.Fragment.FirstAddFragment;
-import com.supportingonline.hrapp.Fragment.SecondAddFragment;
-import com.supportingonline.hrapp.Fragment.SubmitAddFragment;
+import com.supportingonline.hrapp.Fragment.TasksFragment;
 
 import java.util.ArrayList;
 

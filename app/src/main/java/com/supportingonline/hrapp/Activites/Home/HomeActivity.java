@@ -36,18 +36,21 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.supportingonline.hrapp.Activites.Login.LoginActivity;
 import com.supportingonline.hrapp.Activites.Users.UsersActivity;
-import com.supportingonline.hrapp.Adapter.HeadCardAdapter;
 import com.supportingonline.hrapp.Adapter.MenuAdapter;
 import com.supportingonline.hrapp.AddUserActivity;
 import com.supportingonline.hrapp.Api.MyRequest;
 import com.supportingonline.hrapp.Api.OnErrorRequest;
 import com.supportingonline.hrapp.Api.OnSuccessRequest;
+import com.supportingonline.hrapp.Custom.MyFragment;
 import com.supportingonline.hrapp.Custom.MySharedPref;
 import com.supportingonline.hrapp.Custom.MySizes;
 import com.supportingonline.hrapp.Custom.Myvollysinglton;
 import com.supportingonline.hrapp.Custom.SpaceRecycler_H;
 import com.supportingonline.hrapp.Custom.SpaceRecycler_V;
 import com.supportingonline.hrapp.Dialogs.MyProgressDialog;
+import com.supportingonline.hrapp.Fragment.AdminHomeFragment;
+import com.supportingonline.hrapp.Fragment.TasksFragment;
+import com.supportingonline.hrapp.Fragment.UserHomeFragment;
 import com.supportingonline.hrapp.InterFaces.ErrorCall;
 import com.supportingonline.hrapp.InterFaces.OnPress;
 import com.supportingonline.hrapp.InterFaces.OnPressInside;
@@ -83,14 +86,7 @@ public class HomeActivity extends MyActivity {
     private ArrayList<MenuModel> menuModels=new ArrayList<>();
 
 
-    private HeadCardAdapter headCardAdapter;
-    private RecyclerView recyclerHeadCard;
-    private ArrayList<HeadCardModel> headCardList=new ArrayList<>();
 
-
-    private PieChart piechart;
-
-    private HomeViewModel vm;
 
     private MyProgressDialog dialog;
 
@@ -106,7 +102,7 @@ public class HomeActivity extends MyActivity {
         more_icon=(ImageView)toolbar.findViewById(R.id.tb_admin_more);
         recyclerView=(RecyclerView)findViewById(R.id.recycler_menu_admin);
         drawer=(DrawerLayout)findViewById(R.id.admin_drawer);
-        piechart=(PieChart) findViewById(R.id.home_pie_chart) ;
+
         imageView=(CircleImageView)findViewById(R.id.home_image);
         textName=(TextView)findViewById(R.id.home_name);
         textEmail=(TextView)findViewById(R.id.home_email);
@@ -137,35 +133,20 @@ public class HomeActivity extends MyActivity {
         });
 
         // menu
-        initMenuForHr();
+        if (getRole().equals("hr")) {
+            initMenuForHr();
+            MyFragment.changeLoginFragment(this,new AdminHomeFragment(),R.id.myhome_container,0,0);
 
-        // view model
-        vm= ViewModelProviders.of(this).get(HomeViewModel.class);
-        MutableLiveData<ArrayList<HeadCardModel>> liveData=vm.getInitHeadCards();
+        }else if (getRole().equals("user")){
+            initMenuForUser();
+            MyFragment.changeLoginFragment(this,new UserHomeFragment(),R.id.myhome_container,0,0);
+
+        }
 
 
 
-        // recycler head
-        recyclerHeadCard=(RecyclerView)findViewById(R.id.recycler_admin_head);
-        recyclerHeadCard.setLayoutManager(new GridLayoutManager(this,2));
-        recyclerHeadCard.addItemDecoration(new SpaceRecycler_H(MySizes.getwedith(this)/60));
-        recyclerHeadCard.addItemDecoration(new SpaceRecycler_V(MySizes.gethight(this)/40));
-        headCardAdapter=new HeadCardAdapter(vm.headCardList, this, new OnPress() {
-            @Override
-            public void onClick(View view, int position) {
 
-                startActivity(new Intent(HomeActivity.this, UsersActivity.class));
-                overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
 
-            }
-        });
-        recyclerHeadCard.setAdapter(headCardAdapter);
-        liveData.observe(this, new Observer<ArrayList<HeadCardModel>>() {
-            @Override
-            public void onChanged(ArrayList<HeadCardModel> headCardModels) {
-                headCardAdapter.notifyDataSetChanged();
-            }
-        });
 
 
         // notification
@@ -188,87 +169,20 @@ public class HomeActivity extends MyActivity {
 
 
         // info
-        Glide.with(getContext()).load(getImage()).into(imageView);
+        Glide.with(getContext()).load(getImage()).error(R.drawable.profile).into(imageView);
         textName.setText(getName());
         textEmail.setText(getEmail());
 
 
-        // pie chart
-        loadPieChart();
 
-
-
-        // init head
-        initHead();
 
 
 
     }
 
-    private void loadPieChart() {
-        piechart.setUsePercentValues(true);
-        piechart.getDescription().setEnabled(false);
-        piechart.setDrawHoleEnabled(true);
-        piechart.setHoleColor(Color.WHITE);
-
-        piechart.setTransparentCircleColor(Color.WHITE);
-        piechart.setTransparentCircleAlpha(110);
-
-        piechart.setHoleRadius(58f);
-        piechart.setTransparentCircleRadius(61f);
-
-        piechart.setDrawCenterText(true);
-
-        piechart.setRotationAngle(0);
-        // enable rotation of the chart by touch
-        piechart.setRotationEnabled(true);
-        piechart.setHighlightPerTapEnabled(true);
-
-        List<String> labes=new ArrayList<>() ;
-        labes.add("January");
-        labes.add("February");
-        labes.add("March");
-        labes.add("April");
-        labes.add("May");
-        labes.add("June");
 
 
-        List<PieEntry> entries=new ArrayList<>() ;
-        entries.add(new PieEntry(50, labes.get(0)));
-        entries.add(new PieEntry(10, labes.get(1)));
-        entries.add(new PieEntry(20, labes.get(2)));
-        entries.add(new PieEntry(20, labes.get(3)));
-
-
-
-
-        PieDataSet pieDataSet = new PieDataSet(entries, "");
-        pieDataSet.setColor(R.color.custom1);
-
-        PieData pieData = new PieData(pieDataSet);
-
-
-        pieDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
-
-        piechart.setData(pieData);
-        piechart.setEntryLabelColor(R.color.custom1);
-
-        piechart.animateY(1400, Easing.EaseInOutQuad);
-
-    }
-
-
-    private void initHead() {
-        String[] titles={"ahmed","nagy","mohamed"};
-        int icons[]={R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user};
-        for (int i= 0;i<titles.length;i++){
-            HeadCardModel model=new HeadCardModel();
-
-           vm.addNewCard(model);
-        }
-
-    }
-
+    // hr menu
     private void initMenuForHr() {
         menuModels.clear();
         String[] menuTtiles=getResources().getStringArray(R.array.menu_titles);
@@ -303,9 +217,18 @@ public class HomeActivity extends MyActivity {
 
                 // click menu
 
+                if (!menuModels.get(position).isSelected()){
+                    drawer.closeDrawer(Gravity.LEFT);
+                }
+
                 switch (position) {
                     case 0:
+                        if (!menuModels.get(position).isSelected()){
+                            MyFragment.changeLoginFragment(getContext(),new AdminHomeFragment(),R.id.myhome_container,
+                                    R.anim.fadin,R.anim.fadout);
+                            mangeSelectMenu(position);
 
+                        }
                         break;
                     case 1:
 
@@ -317,6 +240,7 @@ public class HomeActivity extends MyActivity {
 
                         break;
                 }
+
             }
         }, new OnPressInside() {
             @Override
@@ -342,12 +266,68 @@ public class HomeActivity extends MyActivity {
 
                     case 2:
 
-                        alertLogoutDilaog();
 
                         break;
                 }
             }
         });
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+        recyclerView.setAdapter(menuAdapter);
+    }
+
+    // user menu
+    private void initMenuForUser() {
+        menuModels.clear();
+        String[] menuTtiles=getResources().getStringArray(R.array.menu_titlesforuser);
+        int[] menuIcons={R.drawable.ic_dashboard,R.drawable.ic_edit,R.drawable.ic_logout};
+        for (int i=0;i<menuTtiles.length;i++){
+            MenuModel model=new MenuModel();
+            model.setTitle(menuTtiles[i]);
+            model.setIcon(menuIcons[i]);
+            if (i==0){
+                model.setSelected(true);
+            }
+            menuModels.add(model);
+        }
+
+        menuAdapter=new MenuAdapter(menuModels, this, new OnPress() {
+            @Override
+            public void onClick(View view, int position) {
+
+                // click menu
+
+                if (!menuModels.get(position).isSelected()){
+                    drawer.closeDrawer(Gravity.LEFT);
+
+                }
+                switch (position) {
+                    case 0:
+                        if (!menuModels.get(position).isSelected()){
+                            MyFragment.changeLoginFragment(getContext(),new UserHomeFragment(),R.id.myhome_container,
+                                    R.anim.fadin,R.anim.fadout);
+                            mangeSelectMenu(position);
+                        }
+
+                        break;
+                    case 1:
+
+                        if (!menuModels.get(position).isSelected()){
+                            MyFragment.changeLoginFragment(getContext(),new TasksFragment(),R.id.myhome_container,
+                                    R.anim.fadin,R.anim.fadout);
+                            mangeSelectMenu(position);
+                        }
+
+                        break;
+
+                    case 2:
+
+                        alertLogoutDilaog();
+
+                        break;
+                }
+               ;
+            }
+        }, null);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
         recyclerView.setAdapter(menuAdapter);
     }
@@ -366,9 +346,7 @@ public class HomeActivity extends MyActivity {
                 int id=item.getItemId();
 
                 switch (id){
-                    case R.id.m_a_myprofile:
 
-                        break;
                     case R.id.m_a_setting:
                         startActivity(new Intent(HomeActivity.this, SettingActivity.class));
                         break;
@@ -443,5 +421,13 @@ public class HomeActivity extends MyActivity {
         }else {
             super.onBackPressed();
         }
+    }
+
+    private void mangeSelectMenu(int pos){
+        for (int i =0; i<menuModels.size();i++){
+            menuModels.get(i).setSelected(false);
+        }
+        menuModels.get(pos).setSelected(true);
+        menuAdapter.notifyDataSetChanged();
     }
 }

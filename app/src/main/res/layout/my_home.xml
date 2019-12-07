@@ -7,30 +7,11 @@
     <include layout="@layout/toolbar_admin"
         android:id="@+id/admin_toolbar"/>
 
-    <androidx.core.widget.NestedScrollView
+    <FrameLayout
+        android:id="@+id/myhome_container"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:fitsSystemWindows="true"
-        android:padding="@dimen/_15sdp"
-        >
+        android:layout_height="match_parent"
+        />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            >
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_admin_head"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layoutDirection="ltr"/>
-            
-            
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/home_pie_chart"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"/>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

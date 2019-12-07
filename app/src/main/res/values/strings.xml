@@ -32,7 +32,12 @@
     <string-array name="menu_titles2">
         <item>Show All Users</item>
         <item>Add New User</item>
+    </string-array>
 
+    <string-array name="menu_titlesforuser">
+        <item>OverView</item>
+        <item>Tasks</item>
+        <item>Logout</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -42,7 +47,7 @@
     <string name="this_field_is_required">This field is required.</string>
     <string name="valiedemail">Please enter a valid Email.</string>
     <string name="valiedpassword">Please enter a valid Password.</string>
-    <string name="domain">http://192.168.43.59:80/</string>
+    <string name="domain">http://192.168.1.185/</string>
     <string name="errorserver">error in server</string>
     <string name="jobinfo">Job Informations</string>
     <string name="user_info">User Info :</string>

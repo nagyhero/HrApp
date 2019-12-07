@@ -2,6 +2,7 @@ package com.supportingonline.hrapp.Adapter;
 
 import android.content.Context;
 
+import android.content.res.ColorStateList;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -55,8 +56,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuHolder> {
 
         if (model.isSelected()){
             holder.layout.setBackgroundColor(context.getResources().getColor(R.color.custom1));
+            holder.icon.setBackgroundTintList(context.getResources().getColorStateList(R.color.colorPrimaryDark));
         }else {
             holder.layout.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+            holder.icon.setBackgroundTintList(context.getResources().getColorStateList(R.color.custom1));
+
 
         }
 

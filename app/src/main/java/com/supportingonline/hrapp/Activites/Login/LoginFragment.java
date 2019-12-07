@@ -197,15 +197,10 @@ public class LoginFragment extends MyFragmentCustom {
                         map.put("email",email);
                         map.put("token",token);
                         map.put("role",role);
+                        map.put("image",image);
 
                         MySharedPref.setArrayOfData(view.getContext(),map);
-                        if (role.equals("hr")) {
-                            startActivity(new Intent(view.getContext(), HomeActivity.class));
-                        }else if (role.equals("user")){
-                            startActivity(new Intent(view.getContext(), HomeUserActivity.class));
-
-                        }
-
+                        startActivity(new Intent(view.getContext(), HomeActivity.class));
                         getActivity().overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
                         ((Activity)view.getContext()).finish();
                     } catch (JSONException e) {
