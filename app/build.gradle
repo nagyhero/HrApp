@@ -80,4 +80,6 @@ dependencies {
     // back fragment
     implementation 'net.skoumal.fragmentback:fragment-back:0.2.3'
 
+    // shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 }

@@ -36,6 +36,7 @@ import com.SmartTech.hrapp.Model.UsersModel;
 import com.SmartTech.hrapp.MyActivity;
 import com.SmartTech.hrapp.R;
 import com.SmartTech.hrapp.UserActivity;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,6 +57,8 @@ public class UsersActivity extends MyActivity {
     private ArrayList<UsersModel> arrayList=new ArrayList<>();
     private UsersAdapter adapter;
 
+    private ShimmerFrameLayout shimmerContainer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +71,7 @@ public class UsersActivity extends MyActivity {
         backView=(View) toolbar.findViewById(R.id.t_normal_back);
         imageAdd=(ImageView)toolbar.findViewById(R.id.t_normal_add);
         search= (EditText) findViewById(R.id.users_search);
-
+        shimmerContainer = (ShimmerFrameLayout) findViewById(R.id.users_shimmer);
 
 
         //title
@@ -116,7 +119,7 @@ public class UsersActivity extends MyActivity {
             @Override
             public void onClick(View view, int position) {
                 // click more
-                popUp(view);
+                popUp(view,position);
 
 
             }
@@ -152,14 +155,23 @@ public class UsersActivity extends MyActivity {
     }
 
     private void loadUsers() {
+
+        // shimmer
+        shimmerContainer.setVisibility(View.VISIBLE);
+        shimmerContainer.startShimmerAnimation();
+
         StringRequest request=new MyRequest(getToken(),0,getUserUrl(),
                 new OnSuccessRequest(new SuccessCall() {
                     @Override
                     public void OnBack(JSONObject object) {
-                        Log.d("Tag",object.toString());
+                        //Log.d("Tag",object.toString());
 
                         // success
                         if (object.has("success")) {
+
+                            // shimmer
+                            shimmerContainer.setVisibility(View.GONE);
+
                             try {
                                 JSONArray successArray = object.getJSONArray("success");
                                 for (int i=0; i<successArray.length();i++){
@@ -227,7 +239,8 @@ public class UsersActivity extends MyActivity {
                 }),new OnErrorRequest(getContext(), new ErrorCall() {
             @Override
             public void OnBack() {
-
+                // shimmer
+                shimmerContainer.setVisibility(View.GONE);
             }
         }));
         Myvollysinglton.getInstance(getContext()).addtorequst(request);
@@ -237,7 +250,7 @@ public class UsersActivity extends MyActivity {
 
     // pop up menu
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    private void popUp(View view){
+    private void popUp(View view,int position){
         PopupMenu popupMenu=new PopupMenu(UsersActivity.this,view);
         popupMenu.getMenuInflater().inflate(R.menu.user_menu,popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {

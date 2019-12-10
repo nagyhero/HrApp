@@ -83,5 +83,7 @@
     <string name="view_details">View Details</string>
     <string name="lastupdate">Last Update</string>
     <string name="devices">Fp Devices</string>
+    <string name="export">Export</string>
+    <string name="shutdown">Shutdown</string>
 
 </resources>

@@ -165,5 +165,6 @@
     <orderEntry type="library" name="Gradle: de.hdodenhof:circleimageview:3.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.aakira:expandable-layout:1.6.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.PhilJay:MPAndroidChart:v3.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.shimmer:shimmer:0.1.0@aar" level="project" />
   </component>
 </module>

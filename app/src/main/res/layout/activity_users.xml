@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Activites.Users.UsersActivity"
     android:orientation="vertical"
+    android:background="@android:color/white"
     >
 
     <include
@@ -51,6 +52,31 @@
         android:layout_height="wrap_content"
         android:nestedScrollingEnabled="false"
         />
+
+        <!--shimmer-->
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/users_shimmer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:duration="200">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <include
+                    layout="@layout/shimmerlayout"/>
+                <include
+                    android:layout_marginTop="@dimen/_20sdp"
+                    layout="@layout/shimmerlayout"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
+            </LinearLayout>
+
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </LinearLayout>
 
