@@ -18,6 +18,9 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.SmartTech.hrapp.AddDeviceActivity;
+import com.SmartTech.hrapp.DevicesActivity;
+import com.SmartTech.hrapp.Fragment.AccountFragment;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.SmartTech.hrapp.Activites.Login.LoginActivity;
@@ -166,16 +169,14 @@ public class HomeActivity extends MyActivity {
     // hr menu
     private void initMenuForHr() {
         menuModels.clear();
-        String[] menuTtiles=getResources().getStringArray(R.array.menu_titles);
-        int[] menuIcons={R.drawable.ic_dashboard,R.drawable.ic_user,R.drawable.ic_logout};
-        for (int i=0;i<menuTtiles.length;i++){
+        for (int i=0;i<getAdminTitles().size();i++){
             MenuModel model=new MenuModel();
-            model.setTitle(menuTtiles[i]);
-            model.setIcon(menuIcons[i]);
+            model.setTitle(getAdminTitles().get(i));
+            model.setIcon(getAdminIcons().get(i));
             if (i==0){
                 model.setSelected(true);
             }
-            if (i==1){
+            if (i==2){
                 ArrayList<MenuModel> mlist=new ArrayList<>();
                 String[] menuTtiles2=getResources().getStringArray(R.array.menu_titles2);
                 int[] menuIcons2={android.R.drawable.btn_radio,android.R.drawable.btn_radio};
@@ -189,6 +190,21 @@ public class HomeActivity extends MyActivity {
                 }
                 model.setListInside(mlist);
             }
+            else if (i==3){
+                ArrayList<MenuModel> mlist=new ArrayList<>();
+                String[] menuTtiles2=getResources().getStringArray(R.array.menu_titles_d);
+                int[] menuIcons2={android.R.drawable.btn_radio,android.R.drawable.btn_radio};
+
+                // second menu items for users
+                for (int mi=0;mi<menuTtiles2.length;mi++) {
+                    MenuModel themodel = new MenuModel();
+                    themodel.setTitle(menuTtiles2[mi]);
+                    themodel.setIcon(menuIcons2[mi]);
+                    mlist.add(themodel);
+                }
+                model.setListInside(mlist);
+            }
+
             menuModels.add(model);
         }
 
@@ -204,6 +220,8 @@ public class HomeActivity extends MyActivity {
 
                 switch (position) {
                     case 0:
+
+                        // dash bord
                         if (!menuModels.get(position).isSelected()){
                             MyFragment.changeLoginFragment(getContext(),new AdminHomeFragment(),R.id.myhome_container,
                                     R.anim.fadin,R.anim.fadout);
@@ -213,9 +231,26 @@ public class HomeActivity extends MyActivity {
                         break;
                     case 1:
 
+                        // admin account
+
+                        MyFragment.changeLoginFragment(getContext(),new AccountFragment()
+                        ,R.id.myhome_container,R.anim.fadin,R.anim.fadout);
+                        mangeSelectMenu(position);
+
                         break;
 
                     case 2:
+
+
+                        break;
+
+
+                    case 3:
+
+
+                        break;
+
+                    case 4:
 
                         alertLogoutDilaog();
 
@@ -229,15 +264,17 @@ public class HomeActivity extends MyActivity {
 
                 // click inside menu
                 switch (position) {
-                    case 0:
 
-                        break;
-                    case 1:
+
+                    case 2:
                         if (position2==0){
+
+                            // users
                             startActivity(new Intent(getContext(),UsersActivity.class));
                             overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
 
                         }else if (position2==1){
+                            // add user
                             startActivity(new Intent(getContext(), AddUserActivity.class));
                             overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
 
@@ -245,9 +282,20 @@ public class HomeActivity extends MyActivity {
 
                         break;
 
-                    case 2:
+                    case 3:
 
+                        if (position2==0){
+                            // devices
+                            startActivity(new Intent(getContext(), DevicesActivity.class));
+                            overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
 
+                        }else if (position2==1){
+
+                            // add device
+                            startActivity(new Intent(getContext(), AddDeviceActivity.class));
+                            overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
+
+                        }
                         break;
                 }
             }
@@ -399,7 +447,23 @@ public class HomeActivity extends MyActivity {
     public void onBackPressed() {
         if (drawer.isDrawerOpen(Gravity.LEFT)){
             drawer.closeDrawer(Gravity.LEFT);
-        }else {
+        }
+        // if not in home
+        else if (!menuModels.get(0).isSelected()){
+
+
+            if (getRole().equals("user")){
+                MyFragment.changeLoginFragment(getContext(),new UserHomeFragment(),
+                        R.id.myhome_container,R.anim.fadin,R.anim.fadout);
+            }else {
+                MyFragment.changeLoginFragment(getContext(),new AdminHomeFragment(),
+                        R.id.myhome_container,R.anim.fadin,R.anim.fadout);
+            }
+            mangeSelectMenu(0);
+        }
+        // end
+
+        else {
             super.onBackPressed();
         }
     }

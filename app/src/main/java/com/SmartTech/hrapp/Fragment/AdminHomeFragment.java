@@ -15,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.SmartTech.hrapp.Custom.MyFragmentCustom;
+import com.SmartTech.hrapp.DevicesActivity;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -37,7 +39,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AdminHomeFragment extends Fragment {
+public class AdminHomeFragment extends MyFragmentCustom {
 
 
     private View view;
@@ -75,7 +77,16 @@ public class AdminHomeFragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
 
-                startActivity(new Intent(mContext, UsersActivity.class));
+                switch (position){
+                    case 0:
+                        startActivity(new Intent(mContext, UsersActivity.class));
+                        break;
+                    case 1:
+                        startActivity(new Intent(mContext, DevicesActivity.class));
+                        break;
+
+
+                }
                 ((Activity)mContext).overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
 
             }
@@ -148,10 +159,11 @@ public class AdminHomeFragment extends Fragment {
 
 
     private void initHead() {
-        String[] titles={"ahmed","nagy","mohamed"};
-        int icons[]={R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user};
-        for (int i= 0;i<titles.length;i++){
+
+        for (int i= 0;i<getCardTitles().size();i++){
             HeadCardModel model=new HeadCardModel();
+            model.setTitle(getCardTitles().get(i));
+            model.setIcon(getCardIcons().get(i));
             headCardList.add(model);
             headCardAdapter.notifyDataSetChanged();
         }

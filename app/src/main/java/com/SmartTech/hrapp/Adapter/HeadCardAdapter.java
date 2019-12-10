@@ -31,11 +31,14 @@ public class HeadCardAdapter extends RecyclerView.Adapter<HeadCardHolder>{
     public HeadCardHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
 
-        return MyViewHolder.headCardHolder(context,R.layout.recycler_head_card,parent);
+        return MyViewHolder.headCardHolder(context,parent);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HeadCardHolder holder, final int position) {
+
+        // model
+        HeadCardModel model=arrayList.get(position);
 
         // click
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +47,14 @@ public class HeadCardAdapter extends RecyclerView.Adapter<HeadCardHolder>{
                 onPress.onClick(v,position);
             }
         });
+
+        // title
+        holder.title.setText(model.getTitle());
+
+        // icon
+        holder.icon.setBackgroundResource(model.getIcon());
+        holder.icon.setBackgroundTintList(context.getResources().getColorStateList(android.R.color.white));
+
 
     }
 

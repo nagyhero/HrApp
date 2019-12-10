@@ -30,7 +30,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsHold
     @NonNull
     @Override
     public NotificationsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return MyViewHolder.notificationsHolder(context, R.layout.recycler_notification,parent);
+        return MyViewHolder.notificationsHolder(context,parent);
     }
 
     @Override

@@ -43,7 +43,7 @@ public class UsersAdapter  extends RecyclerView.Adapter<UsersHolder> implements 
     @Override
     public UsersHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        return (UsersHolder) MyViewHolder.myuserholder(context, R.layout.recycler_users,parent);
+        return (UsersHolder) MyViewHolder.myuserholder(context,parent);
     }
 
     @Override

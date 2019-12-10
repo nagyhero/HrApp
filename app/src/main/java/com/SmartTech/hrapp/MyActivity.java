@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.SmartTech.hrapp.Custom.MySharedPref;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class MyActivity extends AppCompatActivity {
 
 
@@ -28,6 +31,11 @@ public class MyActivity extends AppCompatActivity {
     public String getUserUrl(){
 
         return getDomain()+"api/users";
+    }
+
+    public String getDeviceUrl(){
+
+        return getDomain()+"api/fp_devices";
     }
     public String getLogoutUrl(){
 
@@ -52,5 +60,23 @@ public class MyActivity extends AppCompatActivity {
     }
     public String getRole(){
         return MySharedPref.getdata(getContext(),"role");
+    }
+
+    public ArrayList<String> getAdminTitles(){
+        ArrayList<String> arrayList=new ArrayList<>();
+        String[] list=getResources().getStringArray(R.array.menu_titles);
+        arrayList.addAll(Arrays.asList(list));
+        return arrayList;
+    }
+
+    public ArrayList<Integer> getAdminIcons(){
+        ArrayList<Integer> arrayList=new ArrayList<>();
+        arrayList.add(R.drawable.ic_dashboard);
+        arrayList.add(R.drawable.ic_user);
+        arrayList.add(R.drawable.ic_user);
+        arrayList.add(R.drawable.profile);
+        arrayList.add(R.drawable.ic_logout);
+
+        return arrayList;
     }
 }

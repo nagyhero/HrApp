@@ -28,7 +28,7 @@ public class OnErrorRequest implements Response.ErrorListener {
 
     @Override
     public void onErrorResponse(VolleyError error) {
-     Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+    // Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
        // Log.i("main_error", Objects.requireNonNull(error.getMessage()));
         errorCall.OnBack();
 

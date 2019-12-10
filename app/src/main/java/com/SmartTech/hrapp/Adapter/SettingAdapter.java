@@ -30,7 +30,7 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingHolder> {
     @NonNull
     @Override
     public SettingHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return MyViewHolder.settingHolder(context, R.layout.recycler_setting,parent);
+        return MyViewHolder.settingHolder(context,parent);
     }
 
     @Override

@@ -18,26 +18,28 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
+        <activity android:name=".AddDeviceActivity"></activity>
+        <activity android:name=".DevicesActivity" />
         <activity
-            android:name="com.SmartTech.hrapp.AddUserActivity"
+            android:name=".AddUserActivity"
             android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
-        <activity android:name="com.SmartTech.hrapp.SettingActivity" />
+        <activity android:name=".SettingActivity" />
         <activity
-            android:name="com.SmartTech.hrapp.NotificationsActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
-        <activity
-            android:name="com.SmartTech.hrapp.Activites.Users.UsersActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
-        <activity
-            android:name="com.SmartTech.hrapp.UserActivity"
+            android:name=".NotificationsActivity"
             android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
         <activity
-            android:name="com.SmartTech.hrapp.Activites.Home.HomeActivity"
+            android:name=".Activites.Users.UsersActivity"
             android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
         <activity
-            android:name="com.SmartTech.hrapp.Activites.Login.LoginActivity"
+            android:name=".UserActivity"
             android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
-        <activity android:name="com.SmartTech.hrapp.MainActivity">
+        <activity
+            android:name=".Activites.Home.HomeActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
+        <activity
+            android:name=".Activites.Login.LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

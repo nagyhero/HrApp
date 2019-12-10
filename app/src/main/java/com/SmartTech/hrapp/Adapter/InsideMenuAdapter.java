@@ -30,7 +30,7 @@ public class InsideMenuAdapter extends RecyclerView.Adapter<MenuHolder>  {
     @NonNull
     @Override
     public MenuHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return MyViewHolder.menuHolder(context, R.layout.recycler_menu,parent);
+        return MyViewHolder.menuHolder(context,parent);
     }
 
     @Override

@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -48,8 +49,8 @@ public class UsersActivity extends MyActivity {
     private Toolbar toolbar;
     private TextView title;
     private View backView;
+    private ImageView imageAdd;
 
-    private RelativeLayout addLayout;
     private EditText search;
     private RecyclerView recyclerView;
     private ArrayList<UsersModel> arrayList=new ArrayList<>();
@@ -62,11 +63,12 @@ public class UsersActivity extends MyActivity {
         setContentView(R.layout.activity_users);
 
         recyclerView=(RecyclerView)findViewById(R.id.recycler_users);
-        addLayout=(RelativeLayout)findViewById(R.id.users_add);
         toolbar=(Toolbar)findViewById(R.id.users_toolbar);
         title=(TextView)toolbar.findViewById(R.id.t_normal_title);
         backView=(View) toolbar.findViewById(R.id.t_normal_back);
+        imageAdd=(ImageView)toolbar.findViewById(R.id.t_normal_add);
         search= (EditText) findViewById(R.id.users_search);
+
 
 
         //title
@@ -82,10 +84,12 @@ public class UsersActivity extends MyActivity {
 
 
         // add users
-        addLayout.setOnClickListener(new View.OnClickListener() {
+        imageAdd.setVisibility(View.VISIBLE);
+        imageAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UsersActivity.this, AddUserActivity.class));
+                startActivity(new Intent(getContext(), AddUserActivity.class));
+                overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
             }
         });
 
@@ -108,6 +112,7 @@ public class UsersActivity extends MyActivity {
                 overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
             }
         }, new OnPress() {
+            @RequiresApi(api = Build.VERSION_CODES.Q)
             @Override
             public void onClick(View view, int position) {
                 // click more

@@ -25,13 +25,20 @@
 
     <string-array name="menu_titles">
         <item>Dashbord</item>
+        <item>My Account</item>
         <item>Users</item>
+        <item>FB Devices</item>
         <item>Logout</item>
     </string-array>
 
     <string-array name="menu_titles2">
         <item>Show All Users</item>
         <item>Add New User</item>
+    </string-array>
+
+    <string-array name="menu_titles_d">
+        <item>Show All Devices</item>
+        <item>Add New Device</item>
     </string-array>
 
     <string-array name="menu_titlesforuser">
@@ -47,7 +54,7 @@
     <string name="this_field_is_required">This field is required.</string>
     <string name="valiedemail">Please enter a valid Email.</string>
     <string name="valiedpassword">Please enter a valid Password.</string>
-    <string name="domain">http://192.168.1.185/</string>
+    <string name="domain">http://www.erpsmarttech.com/</string>
     <string name="errorserver">error in server</string>
     <string name="jobinfo">Job Informations</string>
     <string name="user_info">User Info :</string>
@@ -72,5 +79,9 @@
     <string name="new_password">New Password</string>
     <string name="verify_password">Verify Password</string>
     <string name="aresurelogout">are you sure to logout from your account</string>
+    <string name="sound">sound in App</string>
+    <string name="view_details">View Details</string>
+    <string name="lastupdate">Last Update</string>
+    <string name="devices">Fp Devices</string>
 
 </resources>
