@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="@string/edit"
+    <item
+        android:id="@+id/menu_u_edit"
+        android:title="@string/edit"
         android:icon="@drawable/ic_edit"
         android:iconTint="@android:color/darker_gray"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
+        tools:targetApi="o" />
 
-        />
-
-    <item android:title="@string/delete"
+    <item
+        android:id="@+id/menu_u_delete"
+        android:title="@string/delete"
         android:icon="@drawable/ic_delete"
         android:iconTint="@android:color/darker_gray"
         app:showAsAction="always"
-        />
+        tools:ignore="UnusedAttribute" />
 
 </menu>

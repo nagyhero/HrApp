@@ -44,6 +44,7 @@
             >
 
             <ImageView
+                android:id="@+id/f_f_image"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
                 android:layout_marginLeft="@dimen/_10sdp"

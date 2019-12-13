@@ -85,5 +85,18 @@
     <string name="devices">Fp Devices</string>
     <string name="export">Export</string>
     <string name="shutdown">Shutdown</string>
+    <string name="device_info">Device Info :</string>
+    <string name="device_name">Device Name</string>
+    <string name="ip_address">Ip Address</string>
+    <string name="submit">Submit</string>
+    <string name="serial">Serial</string>
+    <string name="cancelled">Cancelled!</string>
+    <string name="are_you_sure">Are you sure to delete </string>
+    <string name="no_cancel">No,cancel !</string>
+    <string name="yes_delete">Yes,delete it!</string>
+    <string name="ok">OK</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="errorconn">error in connection</string>
 
 </resources>

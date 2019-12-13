@@ -1,7 +1,15 @@
 package com.SmartTech.hrapp.Model;
 
 public class DeviceModel {
-    private String id,name,ip,usersCount,Statues,lastUpdate;
+    private String id,name,ip,usersCount,Statues,lastUpdate,serial;
+
+    public String getSerial() {
+        return serial;
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
 
     public String getLastUpdate() {
         return lastUpdate;

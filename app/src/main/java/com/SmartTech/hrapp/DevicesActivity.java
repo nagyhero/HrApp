@@ -3,6 +3,7 @@ package com.SmartTech.hrapp;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +29,7 @@ import com.SmartTech.hrapp.InterFaces.ErrorCall;
 import com.SmartTech.hrapp.InterFaces.OnPress;
 import com.SmartTech.hrapp.InterFaces.SuccessCall;
 import com.SmartTech.hrapp.Model.DeviceModel;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.toolbox.StringRequest;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
@@ -36,6 +38,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class DevicesActivity extends MyActivity {
 
@@ -105,7 +109,8 @@ public class DevicesActivity extends MyActivity {
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
-        recyclerView.addItemDecoration(new SpaceRecycler_V(MySizes.gethight(getContext())/20));
+        recyclerView.addItemDecoration(new SpaceRecycler_V(MySizes.gethight(getContext())/50));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),RecyclerView.VERTICAL));
         recyclerView.setAdapter(adapter);
 
         // load devices
@@ -120,65 +125,94 @@ public class DevicesActivity extends MyActivity {
         shimmerContainer.startShimmerAnimation();
 
 
-        StringRequest request=new MyRequest(getToken(),0,getDeviceUrl(),new OnSuccessRequest(new SuccessCall() {
+        StringRequest request=new MyRequest(getToken(),0,getDeviceUrl(),new OnSuccessRequest(getContext(),new SuccessCall() {
             @Override
             public void OnBack(JSONObject object) {
 
-                if (object.has("success")){
+
 
                     // shimmer
                     shimmerContainer.setVisibility(View.GONE);
+                    if (object!=null) {
 
-                    try {
-                        JSONArray array=object.getJSONArray("success");
-                        for (int i=0;i<array.length();i++){
-                            JSONObject deviceObject = array.getJSONObject(i);
-                            String id=deviceObject.getString("id");
-                            String name=deviceObject.getString("name");
-                            String ip=deviceObject.getString("ip");
-                            String usersCount=deviceObject.getString("users");
-                            String statues=deviceObject.getString("status");
-                            String lastUpdate=deviceObject.getString("last_export");
+                        try {
+                            JSONArray array = object.getJSONArray("success");
+                            for (int i = 0; i < array.length(); i++) {
+                                JSONObject deviceObject = array.getJSONObject(i);
+                                String id = deviceObject.getString("id");
+                                String name = deviceObject.getString("name");
+                                String serial = deviceObject.getString("serial");
+                                String ip = deviceObject.getString("ip");
+                                String usersCount = deviceObject.getString("users");
+                                String statues = deviceObject.getString("status");
+                                String lastUpdate = deviceObject.getString("last_export");
 
-                            DeviceModel model=new DeviceModel();
-                            model.setId(id);
-                            model.setIp(ip);
-                            model.setName(name);
-                            model.setUsersCount(usersCount);
-                            model.setStatues(statues);
-                            model.setLastUpdate(lastUpdate);
-                            arrayList.add(model);
-                            adapter.notifyDataSetChanged();
+                                DeviceModel model = new DeviceModel();
+                                model.setId(id);
+                                model.setIp(ip);
+                                model.setName(name);
+                                model.setUsersCount(usersCount);
+                                model.setStatues(statues);
+                                model.setLastUpdate(lastUpdate);
+                                model.setSerial(serial);
+                                arrayList.add(model);
+                                adapter.notifyDataSetChanged();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
                 }
-
-            }
         }),new OnErrorRequest(getContext(), new ErrorCall() {
             @Override
             public void OnBack() {
                 shimmerContainer.setVisibility(View.GONE);
             }
         }));
+          request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         Myvollysinglton.getInstance(getContext()).addtorequst(request);
     }
 
     // pop up menu
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    private void popUp(View view,int position){
+    private void popUp(View view, final int position){
         PopupMenu popupMenu=new PopupMenu(getContext(),view);
         popupMenu.getMenuInflater().inflate(R.menu.device_menu,popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+
+                DeviceModel model = arrayList.get(position);
                 int id=item.getItemId();
 
                 switch (id){
+                    case R.id.menu_d_edit:
 
+                        startActivity(new Intent(getContext(),AddDeviceActivity.class)
+                        .putExtra("is_edit",true)
+                        .putExtra("id",model.getId())
+                        .putExtra("name",model.getName())
+                        .putExtra("ip",model.getIp())
+                        .putExtra("serial",model.getSerial()));
+                        overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
+
+                        break;
+                    case R.id.menu_d_export:
+
+                        break;
+                    case R.id.menu_d_shutdown:
+
+                        break;
+                    case R.id.menu_d_delete:
+                        showDeleteDialogAlert(position);
+
+                        break;
 
                 }
                 return true;
@@ -186,6 +220,43 @@ public class DevicesActivity extends MyActivity {
         });
 
         popupMenu.show();
+    }
+
+    private void showDeleteDialogAlert(final int position){
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText(getString(R.string.are_you_sure)+"  "+arrayList.get(position).getName()+" !")
+                // .setContentText("Won't be able to recover this file!")
+                .setCancelText(getResources().getString(R.string.no_cancel))
+                .setConfirmText(getResources().getString(R.string.yes_delete))
+                .showCancelButton(true)
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        // go to delete server
+                        sDialog.dismissWithAnimation();
+                        deleteUserFromServer(position);
+
+                    }
+                })
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        // reuse previous dialog instance, keep widget user state, reset them if you need
+                        sDialog.setTitleText(getResources().getString(R.string.cancelled))
+                                // .setContentText("Your imaginary file is safe :)")
+                                .setConfirmText(getString(R.string.ok))
+                                .showCancelButton(false)
+                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+
+                    }
+                })
+
+                .show();
+    }
+
+    private void deleteUserFromServer(int position){
+        getProgressToShow().show();
+        getProgress().dismissWithAnimation();
     }
 
 

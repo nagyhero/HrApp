@@ -167,16 +167,14 @@ public class LoginFragment extends MyFragmentCustom {
 
         String url=domain()+"api/login";
         showDialog();
-        StringRequest request=new MyRequest("",1,url,new OnSuccessRequest(new SuccessCall() {
+        StringRequest request=new MyRequest("",1,url,new OnSuccessRequest(getContext(),new SuccessCall() {
             @Override
             public void OnBack(JSONObject object) {
 
                 cancelDialog();
 
-                //success message
-              Log.d("ooooo",object.toString());
 
-                if (object.has("success")){
+
                     try {
                         JSONObject successObject = object.getJSONObject("success");
 
@@ -206,25 +204,7 @@ public class LoginFragment extends MyFragmentCustom {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
 
-                // error message from server
-                else if (object.has("message")){
-                    try {
-                        String errorMessage = object.getString("message");
-                        Toast.makeText(view.getContext(), errorMessage, Toast.LENGTH_SHORT).show();
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                // error in object
-                else {
-                    String errorServer=view.getContext().getResources().getString(R.string.errorserver);
-                    Toast.makeText(view.getContext(), errorServer, Toast.LENGTH_SHORT).show();
-                    Log.d("error server",object.toString());
-
-                }
 
 
 

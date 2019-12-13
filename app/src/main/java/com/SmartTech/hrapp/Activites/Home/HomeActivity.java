@@ -53,6 +53,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeActivity extends MyActivity {
@@ -69,10 +70,6 @@ public class HomeActivity extends MyActivity {
     private MenuAdapter menuAdapter;
     private ArrayList<MenuModel> menuModels=new ArrayList<>();
 
-
-
-
-    private MyProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,17 +88,6 @@ public class HomeActivity extends MyActivity {
         textName=(TextView)findViewById(R.id.home_name);
         textEmail=(TextView)findViewById(R.id.home_email);
 
-
-        // progress dialog
-
-        dialog=new MyProgressDialog(new OnPressView() {
-            @Override
-            public void onclick(View view) {
-                Myvollysinglton.cancel("req");
-                dialog.dismiss();
-            }
-        });
-        dialog.setCancelable(false);
 
 
 
@@ -388,53 +374,52 @@ public class HomeActivity extends MyActivity {
 
 
     private void alertLogoutDilaog(){
-        final AlertDialog.Builder logoutdialog = new AlertDialog.Builder(getContext());
-        logoutdialog.setMessage(getResources().getString(R.string.aresurelogout));
-        logoutdialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                logOut();
-            }
-        });
-        logoutdialog.setNegativeButton("no", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
 
-            }
-        });
-        logoutdialog.show();
+        new SweetAlertDialog(getContext(),SweetAlertDialog.WARNING_TYPE)
+                .setTitleText(getResources().getString(R.string.aresurelogout))
+                .setConfirmText(getResources().getString(R.string.yes))
+                .setCancelText(getResources().getString(R.string.no))
+                .showCancelButton(true)
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismissWithAnimation();
+                        logOut();
+                    }
+                })
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismissWithAnimation();
+                    }
+                }).show();
     }
     private void logOut(){
 
         // show progress dialog
-        dialog.show(getSupportFragmentManager(),"");
+        getProgressToShow().show();
 
-        StringRequest request=new MyRequest(getToken(),1,getLogoutUrl(),new OnSuccessRequest(new SuccessCall() {
+        StringRequest request=new MyRequest(getToken(),1,getLogoutUrl(),new OnSuccessRequest(getContext(),new SuccessCall() {
             @Override
             public void OnBack(JSONObject object) {
 
-                Log.d("logout",object.toString());
-                try {
-                if (object.has("success")){
-                    if (object.getString("success").equals("done")){
+                getProgress().dismissWithAnimation();
+
                         MySharedPref.removerAfterLogout(getContext());
                         finishAffinity();
                         startActivity(new Intent(getContext(), LoginActivity.class));
-                    }
 
-                }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
 
-                dialog.dismiss();
+
+
+
 
             }
         }),new OnErrorRequest(getContext(), new ErrorCall() {
             @Override
             public void OnBack() {
 
-                dialog.dismiss();
+                getProgress().dismissWithAnimation();
 
             }
         }));

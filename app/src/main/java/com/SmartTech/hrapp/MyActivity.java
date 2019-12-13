@@ -1,5 +1,6 @@
 package com.SmartTech.hrapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import com.SmartTech.hrapp.Custom.MySharedPref;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MyActivity extends AppCompatActivity {
 
@@ -78,5 +81,22 @@ public class MyActivity extends AppCompatActivity {
         arrayList.add(R.drawable.ic_logout);
 
         return arrayList;
+    }
+
+    public void showErrorDialog(String message){
+        new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                .setTitleText("Oops...")
+                .setContentText(message)
+                .show();
+    }
+
+    private SweetAlertDialog alertProgress;
+    public SweetAlertDialog getProgressToShow(){
+      alertProgress =new SweetAlertDialog(this,SweetAlertDialog.PROGRESS_TYPE);
+      alertProgress.setTitle(getResources().getString(R.string.loading));
+      return alertProgress;
+    }
+    public SweetAlertDialog getProgress(){
+        return alertProgress;
     }
 }

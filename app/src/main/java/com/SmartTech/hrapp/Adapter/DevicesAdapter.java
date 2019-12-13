@@ -64,7 +64,10 @@ public class DevicesAdapter extends RecyclerView.Adapter<DeviceHolder> {
         holder.name.setText(model.getName());
 
         // ip
-        holder.ip.setText(model.getIp());
+        holder.ip.append(model.getIp());
+
+        // serial
+        holder.serial.append(model.getSerial());
 
         // user count
         holder.userCount.setText(model.getUsersCount() + " "+ context.getResources().getString(R.string.users));

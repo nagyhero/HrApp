@@ -32,7 +32,9 @@ public class AddUserActivity extends MyActivity {
     public static ArrayList<Fragment> fragments=new ArrayList<>();
     private ViewPagerAdapter adapter;
 
-    private MyProgressDialog dialog;
+
+    public static boolean isEdit;
+    public static String id,name;
 
 
 
@@ -41,11 +43,19 @@ public class AddUserActivity extends MyActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
 
+        // is edit
+        isEdit=getIntent().getBooleanExtra("is_edit",false);
+
+        // init
         tabLayout=(TabLayout)findViewById(R.id.add_tabLayout);
         viewPager=(ViewPager)findViewById(R.id.add_viewpager);
         toolbar=(Toolbar)findViewById(R.id.add_toolbar);
         title=(TextView)toolbar.findViewById(R.id.t_normal_title);
         backView=(View) toolbar.findViewById(R.id.t_normal_back);
+
+        if (isEdit){
+            getReadyForEdit();
+        }
 
 
         //title
@@ -60,20 +70,6 @@ public class AddUserActivity extends MyActivity {
         });
 
 
-        // progress dialog
-
-        dialog=new MyProgressDialog(new OnPressView() {
-            @Override
-            public void onclick(View view) {
-                Myvollysinglton.cancel("req");
-                dialog.dismiss();
-            }
-        });
-        dialog.setCancelable(false);
-
-
-        // show progress dialog
-        dialog.show(getSupportFragmentManager(),"");
 
         // pager
 
@@ -85,6 +81,11 @@ public class AddUserActivity extends MyActivity {
         initTab();
 
 
+    }
+
+    private void getReadyForEdit() {
+        id=getIntent().getStringExtra("id");
+        name=getIntent().getStringExtra("name");
     }
 
 

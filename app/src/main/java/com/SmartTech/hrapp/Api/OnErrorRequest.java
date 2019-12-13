@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.SmartTech.hrapp.R;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.SmartTech.hrapp.Activites.Login.LoginActivity;
@@ -15,6 +17,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class OnErrorRequest implements Response.ErrorListener {
 
@@ -44,7 +48,16 @@ public class OnErrorRequest implements Response.ErrorListener {
                         ((Activity)context).finishAffinity();
                         context.startActivity(new Intent(context, LoginActivity.class));
                     }else {
-                        Toast.makeText(context, object.getString("message"), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(context, object.getString("message"), Toast.LENGTH_SHORT).show();
+                        StringBuilder msg = new StringBuilder();
+                               msg.append(object.getString("message"));
+                               if (object.has("errors")){
+                                   msg.append("\n").append(object.getString("errors"));
+                               }
+                        new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("Oops...")
+                                .setContentText(msg.toString())
+                                .show();
                         errorCall.OnBack();
                     }
 
@@ -56,7 +69,11 @@ public class OnErrorRequest implements Response.ErrorListener {
                 e.printStackTrace();
             }
         }else {
-            Toast.makeText(context, "Connection Error", Toast.LENGTH_SHORT).show();
+            new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Oops...")
+                    .setContentText(context.getResources().getString(R.string.errorconn))
+                    .show();
+
         }
 
 

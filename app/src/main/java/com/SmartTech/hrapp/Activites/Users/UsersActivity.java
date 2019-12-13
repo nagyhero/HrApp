@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.SmartTech.hrapp.AddDeviceActivity;
 import com.android.volley.toolbox.StringRequest;
 import com.SmartTech.hrapp.Adapter.UsersAdapter;
 import com.SmartTech.hrapp.AddUserActivity;
@@ -43,6 +44,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class UsersActivity extends MyActivity {
 
@@ -161,79 +164,74 @@ public class UsersActivity extends MyActivity {
         shimmerContainer.startShimmerAnimation();
 
         StringRequest request=new MyRequest(getToken(),0,getUserUrl(),
-                new OnSuccessRequest(new SuccessCall() {
+                new OnSuccessRequest(getContext(),new SuccessCall() {
                     @Override
                     public void OnBack(JSONObject object) {
                         //Log.d("Tag",object.toString());
 
-                        // success
-                        if (object.has("success")) {
+
 
                             // shimmer
                             shimmerContainer.setVisibility(View.GONE);
 
-                            try {
-                                JSONArray successArray = object.getJSONArray("success");
-                                for (int i=0; i<successArray.length();i++){
-                                    JSONObject jsonObject = successArray.getJSONObject(i);
+                            if (object!=null) {
 
-                                    String id = jsonObject.getString("id");
-                                    String name = jsonObject.getString("name");
-                                    String gender = jsonObject.getString("gender");
+                                try {
+                                    JSONArray successArray = object.getJSONArray("success");
+                                    for (int i = 0; i < successArray.length(); i++) {
+                                        JSONObject jsonObject = successArray.getJSONObject(i);
 
-                                    String email = null ;
-                                    if(jsonObject.isNull("email")) {
-                                        jsonObject.getString("email");
+                                        String id = jsonObject.getString("id");
+                                        String name = jsonObject.getString("name");
+                                        String gender = jsonObject.getString("gender");
+
+                                        String email = null;
+                                        if (jsonObject.isNull("email")) {
+                                            jsonObject.getString("email");
+                                        }
+
+                                        String image = null;
+                                        if (!jsonObject.isNull("image")) {
+                                            image = jsonObject.getString("image");
+                                        }
+
+                                        String phone = null;
+                                        if (!jsonObject.isNull("phone")) {
+                                            phone = jsonObject.getString("phone");
+                                        }
+
+                                        String hiringDate = null;
+                                        if (!jsonObject.isNull("hiring_date")) {
+                                            hiringDate = jsonObject.getString("hiring_date");
+                                        }
+
+                                        String salary = null;
+                                        if (!jsonObject.isNull("salary")) {
+                                            salary = jsonObject.getString("salary");
+                                        }
+
+
+                                        String positionName = jsonObject.getString("position");
+
+                                        UsersModel model = new UsersModel();
+                                        model.setId(id);
+                                        model.setName(name);
+                                        model.setImage(image);
+                                        model.setPositionName(positionName);
+                                        model.setEmail(email);
+                                        model.setGender(gender);
+                                        model.setHiringDate(hiringDate);
+                                        model.setSalary(salary);
+
+
+                                        arrayList.add(model);
+                                        adapter.notifyDataSetChanged();
+
                                     }
-
-                                    String image = null;
-                                    if (!jsonObject.isNull("image")) {
-                                      image  = jsonObject.getString("image");
-                                    }
-
-                                    String phone = null;
-                                    if (!jsonObject.isNull("phone")) {
-                                        phone  = jsonObject.getString("phone");
-                                    }
-
-                                    String hiringDate = null;
-                                    if (!jsonObject.isNull("hiring_date")) {
-                                        hiringDate= jsonObject.getString("hiring_date");
-                                    }
-
-                                    String salary = null;
-                                    if (!jsonObject.isNull("salary")) {
-                                        salary  = jsonObject.getString("salary");
-                                    }
-
-
-
-                                    String positionName = jsonObject.getString("position");
-
-                                    UsersModel model = new UsersModel();
-                                    model.setId(id);
-                                    model.setName(name);
-                                    model.setImage(image);
-                                    model.setPositionName(positionName);
-                                    model.setEmail(email);
-                                    model.setGender(gender);
-                                    model.setHiringDate(hiringDate);
-                                    model.setSalary(salary);
-
-
-                                    arrayList.add(model);
-                                    adapter.notifyDataSetChanged();
-
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
-                        }
-
-                        // error
-                        else {
-                            Toast.makeText(UsersActivity.this, getErrorServerMessage(), Toast.LENGTH_SHORT).show();
-                        }
 
                     }
                 }),new OnErrorRequest(getContext(), new ErrorCall() {
@@ -250,7 +248,7 @@ public class UsersActivity extends MyActivity {
 
     // pop up menu
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    private void popUp(View view,int position){
+    private void popUp(View view, final int position){
         PopupMenu popupMenu=new PopupMenu(UsersActivity.this,view);
         popupMenu.getMenuInflater().inflate(R.menu.user_menu,popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -258,8 +256,24 @@ public class UsersActivity extends MyActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 int id=item.getItemId();
 
-                switch (id){
+                UsersModel model=arrayList.get(position);
 
+                switch (id){
+                    case R.id.menu_u_edit:
+
+                        startActivity(new Intent(getContext(), AddUserActivity.class)
+                                .putExtra("is_edit",true)
+                                .putExtra("id",model.getId())
+                                .putExtra("name",model.getName())
+                        );
+                        overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
+
+                        break;
+                    case R.id.menu_u_delete:
+
+                        showDeleteDialogAlert(position);
+
+                        break;
 
                 }
                 return true;
@@ -267,6 +281,43 @@ public class UsersActivity extends MyActivity {
         });
 
         popupMenu.show();
+    }
+
+    private void showDeleteDialogAlert(final int position){
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText(getString(R.string.are_you_sure)+"  "+arrayList.get(position).getName()+" !")
+               // .setContentText("Won't be able to recover this file!")
+                .setCancelText(getResources().getString(R.string.no_cancel))
+                .setConfirmText(getResources().getString(R.string.yes_delete))
+                .showCancelButton(true)
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        // go to delete server
+                        sDialog.dismissWithAnimation();
+                        deleteUserFromServer(position);
+
+                    }
+                })
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        // reuse previous dialog instance, keep widget user state, reset them if you need
+                        sDialog.setTitleText(getResources().getString(R.string.cancelled))
+                               // .setContentText("Your imaginary file is safe :)")
+                                .setConfirmText(getString(R.string.ok))
+                                .showCancelButton(false)
+                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+
+                    }
+                })
+
+                .show();
+    }
+
+    private void deleteUserFromServer(int position){
+        getProgressToShow().show();
+        getProgress().dismissWithAnimation();
     }
 
 

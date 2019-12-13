@@ -12,7 +12,7 @@ import com.SmartTech.hrapp.R;
 
 public class DeviceHolder extends RecyclerView.ViewHolder {
 
-    public TextView name,ip,userCount,textclick,statues,lastUpdate;
+    public TextView name,ip,userCount,textclick,statues,lastUpdate,serial;
     public RelativeLayout clickContanier;
     public ImageView more;
 
@@ -24,6 +24,7 @@ public class DeviceHolder extends RecyclerView.ViewHolder {
         textclick=(TextView)itemView.findViewById(R.id.r_devices_clicktext);
         statues=(TextView)itemView.findViewById(R.id.r_devices_statues);
         lastUpdate=(TextView)itemView.findViewById(R.id.r_devices_lastUpdate);
+        serial=(TextView)itemView.findViewById(R.id.r_devices_serial);
         clickContanier=(RelativeLayout)itemView.findViewById(R.id.r_devices_clickcontainer);
         more=(ImageView)itemView.findViewById(R.id.r_devices_more);
     }
