@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: net.skoumal.fragmentback:fragment-back:0.2.3@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9143ff8705ad8d6b5798cfc2d9d07c18/jetified-fragment-back-0.2.3/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9143ff8705ad8d6b5798cfc2d9d07c18/jetified-fragment-back-0.2.3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bd6e62c45dc7c82e418989875b032f54/jetified-fragment-back-0.2.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bd6e62c45dc7c82e418989875b032f54/jetified-fragment-back-0.2.3/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.skoumal.fragmentback/fragment-back/0.2.3/7704bf7fb2b3490b825fa667338cae09dc3245bb/fragment-back-0.2.3-javadoc.jar!/" />

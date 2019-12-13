@@ -46,7 +46,7 @@ public class NotificationsActivity extends AppCompatActivity {
         title=(TextView)toolbar.findViewById(R.id.t_normal_title);
         backView=(View) toolbar.findViewById(R.id.t_normal_back);
         recyclerView=(RecyclerView)findViewById(R.id.recycler_notifications);
-        coordinatorLayout = findViewById(R.id.coordinatorLayout);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
 
         //title
         title.setText(getResources().getString(R.string.notifications));

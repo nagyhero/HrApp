@@ -51,7 +51,7 @@ dependencies {
 
 
     // recyclerView and cardView
-    implementation 'androidx.recyclerview:recyclerview:1.1.0-rc01'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
 
     // sdp

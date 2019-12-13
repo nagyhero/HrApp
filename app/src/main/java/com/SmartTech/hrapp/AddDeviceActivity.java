@@ -111,8 +111,14 @@ public class AddDeviceActivity extends MyActivity {
 
                 getProgress().dismissWithAnimation();
 
-                   //startActivity(new Intent(getContext(), HomeActivity.class));
-                  // finishAffinity();
+                if (object!=null) {
+
+                    startActivity(new Intent(getContext(), HomeActivity.class)
+                            .putExtra("is_noti",true).putExtra("message","your update has been success")
+
+                    );
+                     finishAffinity();
+                }
 
 
             }

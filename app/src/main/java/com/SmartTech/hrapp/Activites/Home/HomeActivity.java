@@ -1,6 +1,7 @@
 package com.SmartTech.hrapp.Activites.Home;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,6 +48,7 @@ import com.SmartTech.hrapp.MyActivity;
 import com.SmartTech.hrapp.NotificationsActivity;
 import com.SmartTech.hrapp.R;
 import com.SmartTech.hrapp.SettingActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,18 +65,24 @@ public class HomeActivity extends MyActivity {
     private Toolbar toolbar;
     private ImageView menu_icon,noti_icon,more_icon;
 
+    private CoordinatorLayout coordinatorLayout;
     private CircleImageView imageView;
     private TextView textName,textEmail;
 
     private RecyclerView recyclerView;
     private MenuAdapter menuAdapter;
     private ArrayList<MenuModel> menuModels=new ArrayList<>();
+    
+    private boolean isNoti;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        
+       
+        
 
         // init
         toolbar=(Toolbar)findViewById(R.id.admin_toolbar);
@@ -83,6 +91,7 @@ public class HomeActivity extends MyActivity {
         more_icon=(ImageView)toolbar.findViewById(R.id.tb_admin_more);
         recyclerView=(RecyclerView)findViewById(R.id.recycler_menu_admin);
         drawer=(DrawerLayout)findViewById(R.id.admin_drawer);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.home_coord);
 
         imageView=(CircleImageView)findViewById(R.id.home_image);
         textName=(TextView)findViewById(R.id.home_name);
@@ -144,12 +153,28 @@ public class HomeActivity extends MyActivity {
         textEmail.setText(getEmail());
 
 
-
+        // is noti
+        isNoti=getIntent().getBooleanExtra("is_noti",false);
+        if (isNoti){
+            showNotiInHome();
+        }
 
 
 
     }
 
+    private void showNotiInHome() {
+
+        String message=getIntent().getStringExtra("message");
+        assert message != null;
+        Snackbar snackbar = Snackbar
+                .make(coordinatorLayout, message.toUpperCase(), Snackbar.LENGTH_LONG)
+                .setActionTextColor(getResources().getColor(android.R.color.white));
+
+        snackbar.getView().setBackgroundColor(getResources().getColor(R.color.custom3));
+
+        snackbar.show();
+    }
 
 
     // hr menu

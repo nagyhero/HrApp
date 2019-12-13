@@ -18,7 +18,8 @@ public class MainActivity extends MyActivity {
             startActivity(new Intent(this,LoginActivity.class));
         }else {
             Log.d("role",getRole());
-                startActivity(new Intent(this, HomeActivity.class));
+                startActivity(new Intent(this, HomeActivity.class)
+                );
 
 
         }
