@@ -45,6 +45,20 @@ public class MyActivity extends AppCompatActivity {
         return getDomain()+"api/logout";
     }
 
+    public String getActionDeviceUrl(){
+        return getDomain()+"api/fpd_actions";
+    }
+
+    public String getAttendUrl(){
+
+        return getDomain()+"api/fpd_actions";
+    }
+
+    public String getPathImageUser(){
+
+        return getDomain()+"imgs/users/";
+    }
+
     public String getErrorServerMessage(){
 
         return getContext().getResources().getString(R.string.errorserver);
@@ -59,7 +73,7 @@ public class MyActivity extends AppCompatActivity {
     }
 
     public String getImage(){
-        return getDomain()+"imgs/users/"+MySharedPref.getdata(getContext(),"image");
+        return getPathImageUser()+MySharedPref.getdata(getContext(),"image");
     }
     public String getRole(){
         return MySharedPref.getdata(getContext(),"role");

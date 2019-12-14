@@ -216,7 +216,7 @@ public class UsersActivity extends MyActivity {
                                         UsersModel model = new UsersModel();
                                         model.setId(id);
                                         model.setName(name);
-                                        model.setImage(image);
+                                        model.setImage(getPathImageUser()+image);
                                         model.setPositionName(positionName);
                                         model.setEmail(email);
                                         model.setGender(gender);

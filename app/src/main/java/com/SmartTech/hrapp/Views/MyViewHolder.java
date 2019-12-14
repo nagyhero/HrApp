@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.SmartTech.hrapp.Holder.AttendanceHolder;
 import com.SmartTech.hrapp.Holder.DeviceHolder;
 import com.SmartTech.hrapp.Holder.HeadCardHolder;
 import com.SmartTech.hrapp.Holder.MenuHolder;
@@ -43,5 +44,11 @@ public class MyViewHolder {
     public static DeviceHolder deviceHolder(Context context, ViewGroup viewGroup){
         View view= LayoutInflater.from(context).inflate(R.layout.recycler_devices,viewGroup,false);
         return  new DeviceHolder(view);
+    }
+
+    public static AttendanceHolder attendanceHolder(Context context, ViewGroup viewGroup){
+        View view= LayoutInflater.from(context).inflate(R.layout.recycler_attendance
+                ,viewGroup,false);
+        return  new AttendanceHolder(view);
     }
 }

@@ -45,7 +45,6 @@
                         android:layout_height="@dimen/_40sdp"
                         android:src="@mipmap/ic_launcher"
                         android:layout_centerInParent="true"
-
                         />
                     <RelativeLayout
                         android:id="@+id/r_users_nameview_layout"
@@ -54,6 +53,7 @@
                         android:layout_height="@dimen/_40sdp"
                         android:background="@drawable/circel_shape"
                         android:visibility="invisible"
+                        android:layout_centerInParent="true"
                         >
 
                         <TextView

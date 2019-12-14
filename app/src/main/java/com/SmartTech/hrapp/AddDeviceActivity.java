@@ -98,7 +98,7 @@ public class AddDeviceActivity extends MyActivity {
         int method;
         if (isEdit){
             // edit put
-            url = getDeviceUrl()+"/"+id+"/edit";
+            url = getDeviceUrl()+"/"+id;
             method = 2;
         }else {
             // create post

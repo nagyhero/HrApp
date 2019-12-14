@@ -20,8 +20,10 @@ import android.widget.TextView;
 import com.SmartTech.hrapp.Activites.Users.UsersActivity;
 import com.SmartTech.hrapp.Adapter.DevicesAdapter;
 import com.SmartTech.hrapp.Api.MyRequest;
+import com.SmartTech.hrapp.Api.MyRequestHead;
 import com.SmartTech.hrapp.Api.OnErrorRequest;
 import com.SmartTech.hrapp.Api.OnSuccessRequest;
+import com.SmartTech.hrapp.Api.OnSuccessRequestHead;
 import com.SmartTech.hrapp.Custom.MySizes;
 import com.SmartTech.hrapp.Custom.Myvollysinglton;
 import com.SmartTech.hrapp.Custom.SpaceRecycler_V;
@@ -29,7 +31,10 @@ import com.SmartTech.hrapp.InterFaces.ErrorCall;
 import com.SmartTech.hrapp.InterFaces.OnPress;
 import com.SmartTech.hrapp.InterFaces.SuccessCall;
 import com.SmartTech.hrapp.Model.DeviceModel;
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
@@ -38,6 +43,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -97,7 +104,10 @@ public class DevicesActivity extends MyActivity {
             @Override
             public void onClick(View view, int position) {
                 // press
-                startActivity(new Intent(getContext(),FPDetailsActivity.class));
+                startActivity(new Intent(getContext(),FPDetailsActivity.class)
+                .putExtra("id",arrayList.get(position).getId())
+                .putExtra("name",arrayList.get(position).getName())
+                );
                 overridePendingTransition(R.anim.slide_up,R.anim.fadout);
             }
         }, new OnPress() {
@@ -208,6 +218,8 @@ public class DevicesActivity extends MyActivity {
                         break;
                     case R.id.menu_d_shutdown:
 
+                        actionDevice(model.getId(),"shutdown");
+
                         break;
                     case R.id.menu_d_delete:
                         showDeleteDialogAlert(position);
@@ -257,6 +269,48 @@ public class DevicesActivity extends MyActivity {
     private void deleteUserFromServer(int position){
         getProgressToShow().show();
         getProgress().dismissWithAnimation();
+    }
+
+
+    private void actionDevice(String id, final String type){
+
+        // object to send
+        JSONObject object =new JSONObject();
+
+        final JSONArray array = new JSONArray();
+        array.put(id);
+
+        try {
+            object.put("ids",array);
+            object.put("type",type);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        getProgressToShow().show();
+
+
+        JsonObjectRequest request=new MyRequestHead(getToken(), 1, getActionDeviceUrl(), object.toString(), new OnSuccessRequestHead(getContext(), new SuccessCall() {
+            @Override
+            public void OnBack(JSONObject object) {
+
+                getProgress().dismissWithAnimation();
+
+                if (object!=null){
+
+                }
+
+            }
+        }),new OnErrorRequest(getContext(), new ErrorCall() {
+            @Override
+            public void OnBack() {
+                getProgress().dismissWithAnimation();
+            }
+        }));
+
+        Myvollysinglton.getInstance(this).addtorequst(request);
+
     }
 
 

@@ -2,6 +2,8 @@ package com.SmartTech.hrapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import com.SmartTech.hrapp.Activites.Home.HomeActivity;
@@ -14,16 +16,26 @@ public class MainActivity extends MyActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (getToken().equals("")){
-            startActivity(new Intent(this,LoginActivity.class));
-        }else {
-            Log.d("role",getRole());
-                startActivity(new Intent(this, HomeActivity.class)
-                );
+
+        Handler handler =new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (getToken().equals("")){
+                    startActivity(new Intent(getContext(),LoginActivity.class));
+                }else {
+                    Log.d("role",getRole());
+                    startActivity(new Intent(getContext(), HomeActivity.class)
+                    );
 
 
-        }
-        finish();
+                }
+                finish();
+
+
+            }
+        },2000);
+
 
 
     }

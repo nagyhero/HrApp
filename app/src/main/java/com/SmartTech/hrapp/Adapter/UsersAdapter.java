@@ -102,7 +102,7 @@ public class UsersAdapter  extends RecyclerView.Adapter<UsersHolder> implements 
         }else {
             holder.imageView.setVisibility(View.VISIBLE);
             holder.userNameView.setVisibility(View.INVISIBLE);
-            Glide.with(context).load(context.getResources().getString(R.string.domain)+"imgs/users/"+user.getImage())
+            Glide.with(context).load(user.getImage())
                     .into(holder.imageView);
         }
 
