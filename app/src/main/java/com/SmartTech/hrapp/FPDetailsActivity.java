@@ -19,6 +19,8 @@ import com.SmartTech.hrapp.Model.AttendanceModel;
 import com.android.volley.toolbox.StringRequest;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -63,6 +65,39 @@ public class FPDetailsActivity extends MyActivity {
             public void OnBack(JSONObject object) {
 
                 shimmerContainer.setVisibility(View.GONE);
+
+                if (object!=null){
+                    try {
+                        JSONObject sucObject = object.getJSONObject("success");
+                        JSONArray array=sucObject.getJSONArray("attendance");
+                        for (int i =0 ;i<array.length();i++){
+                            JSONObject attendObject = array.getJSONObject(i);
+                            String name = attendObject.getString("user");
+
+                            String image = null;
+                            if (!attendObject.isNull("image")) {
+                                image = attendObject.getString("image");
+                            }
+                            String gender = attendObject.getString("gender");
+                            String date = attendObject.getString("attendance");
+                            String status = attendObject.getString("status");
+
+                            AttendanceModel model=new AttendanceModel();
+                            model.setName(name);
+                            model.setDate(date);
+                            model.setGender(gender);
+                            model.setImage(getPathImageUser()+image);
+                            model.setStatus(status);
+
+                            arrayList.add(model);
+                            adapter.notifyDataSetChanged();
+
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
 
             }
         }),new OnErrorRequest(getContext(), new ErrorCall() {

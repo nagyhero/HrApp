@@ -46,7 +46,11 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceHolder> {
 
         // status
         holder.status.setText(model.getStatus());
-
+        if (model.getStatus().contains("In")){
+            holder.status.setTextColor(context.getResources().getColor(R.color.custom3));
+        }else {
+            holder.status.setTextColor(context.getResources().getColor(R.color.colorAccent));
+        }
 
         // colors
         int headColor=R.color.colorPrimary;
@@ -55,7 +59,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceHolder> {
         }
 
         // image
-        if (model.getImage()==null){
+        if (model.getImage().contains("null")){
             holder.imageView.setVisibility(View.INVISIBLE);
             holder.userNameView.setVisibility(View.VISIBLE);
             holder.userNameView.setBackgroundTintList(ContextCompat.getColorStateList(context,headColor));

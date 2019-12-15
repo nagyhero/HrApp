@@ -94,7 +94,7 @@ public class UsersAdapter  extends RecyclerView.Adapter<UsersHolder> implements 
         holder.more.setImageTintList(context.getResources().getColorStateList(headColor));
 
         // image
-        if (user.getImage()==null){
+        if (user.getImage().contains("null")){
             holder.imageView.setVisibility(View.INVISIBLE);
             holder.userNameView.setVisibility(View.VISIBLE);
             holder.userNameView.setBackgroundTintList(ContextCompat.getColorStateList(context,headColor));
