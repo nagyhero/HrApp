@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HrApp</string>
+    <string name="app_name">smart HR</string>
     <string name="copied">cpoied</string>
     <string name="login">Sign In</string>
     <string name="loading">Loading</string>

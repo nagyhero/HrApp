@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
   <ImageView
+      android:id="@+id/main_logo"
       android:layout_width="@dimen/_200sdp"
       android:layout_height="@dimen/_200sdp"
       android:src="@drawable/logo"
@@ -17,8 +18,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="this app provide by smattech company"
+        android:layout_above="@+id/main_logo"
+        android:text="BY"
+        android:textAlignment="center"
         android:fontFamily="@font/pop_regular"
         android:padding="@dimen/_5sdp"/>
 
