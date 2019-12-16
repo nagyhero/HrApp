@@ -7,12 +7,13 @@ import android.os.Bundle;
 
 
 import com.SmartTech.hrapp.Custom.MyFragment;
+import com.SmartTech.hrapp.MyActivity;
 import com.SmartTech.hrapp.R;
 
 import net.skoumal.fragmentback.BackFragmentHelper;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends MyActivity {
 
 
 
@@ -27,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         MyFragment.changeLoginFragment(this,new LoginFragment(),R.id.login_container,R.anim.fadin,R.anim.fadout);
 
     }
+
 
 
     @Override

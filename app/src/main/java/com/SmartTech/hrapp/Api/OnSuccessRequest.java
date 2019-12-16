@@ -3,7 +3,6 @@ package com.SmartTech.hrapp.Api;
 import android.content.Context;
 import android.util.Log;
 
-import com.SmartTech.hrapp.MyActivity;
 import com.android.volley.Response;
 import com.SmartTech.hrapp.InterFaces.SuccessCall;
 
@@ -42,7 +41,11 @@ public class OnSuccessRequest implements Response.Listener<String> {
             }
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Oops...")
+                    .setContentText(e.getMessage())
+                    .show();
+            //e.printStackTrace();
         }
     }
 }

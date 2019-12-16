@@ -7,11 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +17,11 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.SmartTech.hrapp.AddDeviceActivity;
+import com.SmartTech.hrapp.AddVacationActivity;
 import com.SmartTech.hrapp.DevicesActivity;
 import com.SmartTech.hrapp.Fragment.AccountFragment;
+import com.SmartTech.hrapp.VacationsActivity;
+import com.SmartTech.hrapp.VacationsRequestActivity;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.SmartTech.hrapp.Activites.Login.LoginActivity;
@@ -34,14 +34,12 @@ import com.SmartTech.hrapp.Api.OnSuccessRequest;
 import com.SmartTech.hrapp.Custom.MyFragment;
 import com.SmartTech.hrapp.Custom.MySharedPref;
 import com.SmartTech.hrapp.Custom.Myvollysinglton;
-import com.SmartTech.hrapp.Dialogs.MyProgressDialog;
 import com.SmartTech.hrapp.Fragment.AdminHomeFragment;
 import com.SmartTech.hrapp.Fragment.TasksFragment;
 import com.SmartTech.hrapp.Fragment.UserHomeFragment;
 import com.SmartTech.hrapp.InterFaces.ErrorCall;
 import com.SmartTech.hrapp.InterFaces.OnPress;
 import com.SmartTech.hrapp.InterFaces.OnPressInside;
-import com.SmartTech.hrapp.InterFaces.OnPressView;
 import com.SmartTech.hrapp.InterFaces.SuccessCall;
 import com.SmartTech.hrapp.Model.MenuModel;
 import com.SmartTech.hrapp.MyActivity;
@@ -50,7 +48,6 @@ import com.SmartTech.hrapp.R;
 import com.SmartTech.hrapp.SettingActivity;
 import com.google.android.material.snackbar.Snackbar;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -215,6 +212,20 @@ public class HomeActivity extends MyActivity {
                 }
                 model.setListInside(mlist);
             }
+            else if (i==4){
+                ArrayList<MenuModel> mlist=new ArrayList<>();
+                String[] menuTtiles3=getResources().getStringArray(R.array.menu_titles_vac);
+                int[] menuIcons3={android.R.drawable.btn_radio,android.R.drawable.btn_radio,android.R.drawable.btn_radio};
+
+                // second menu items for users
+                for (int mi=0;mi<menuTtiles3.length;mi++) {
+                    MenuModel themodel = new MenuModel();
+                    themodel.setTitle(menuTtiles3[mi]);
+                    themodel.setIcon(menuIcons3[mi]);
+                    mlist.add(themodel);
+                }
+                model.setListInside(mlist);
+            }
 
             menuModels.add(model);
         }
@@ -304,6 +315,28 @@ public class HomeActivity extends MyActivity {
 
                             // add device
                             startActivity(new Intent(getContext(), AddDeviceActivity.class));
+                            overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
+
+                        }
+                        break;
+
+                    case 4:
+
+                        if (position2==0){
+                            // vacations
+                            startActivity(new Intent(getContext(), VacationsActivity.class));
+                            overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
+
+                        }else if (position2==1){
+
+                            // add vacation
+                            startActivity(new Intent(getContext(), AddVacationActivity.class));
+                            overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
+
+                        }else if (position2==2){
+
+                            // vacations request
+                            startActivity(new Intent(getContext(), VacationsRequestActivity.class));
                             overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
 
                         }

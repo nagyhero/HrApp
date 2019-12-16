@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.SmartTech.hrapp.MyActivity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.toolbox.StringRequest;
 import com.SmartTech.hrapp.Api.MyRequest;
@@ -166,14 +167,12 @@ public class LoginFragment extends MyFragmentCustom {
     private void login(final String email, final String password) {
 
         String url=domain()+"api/login";
-        showDialog();
+        ((MyActivity)getActivity()).getProgressToShow().show();
         StringRequest request=new MyRequest("",1,url,new OnSuccessRequest(getContext(),new SuccessCall() {
             @Override
             public void OnBack(JSONObject object) {
 
-                cancelDialog();
-
-
+                ((MyActivity)getActivity()).getProgress().dismissWithAnimation();
 
                     try {
                         JSONObject successObject = object.getJSONObject("success");
@@ -214,7 +213,7 @@ public class LoginFragment extends MyFragmentCustom {
             public void OnBack() {
 
                 // error
-              cancelDialog();
+                ((MyActivity)getActivity()).getProgress().dismissWithAnimation();
 
 
             }

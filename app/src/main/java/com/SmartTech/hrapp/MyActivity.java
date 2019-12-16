@@ -49,9 +49,9 @@ public class MyActivity extends AppCompatActivity {
         return getDomain()+"api/fpd_actions";
     }
 
-    public String getAttendUrl(){
+    public String getVacationsUrl(){
 
-        return getDomain()+"api/fpd_actions";
+        return getDomain()+"api/vacations";
     }
 
     public String getPathImageUser(){
@@ -91,6 +91,7 @@ public class MyActivity extends AppCompatActivity {
         arrayList.add(R.drawable.ic_dashboard);
         arrayList.add(R.drawable.ic_user);
         arrayList.add(R.drawable.ic_user);
+        arrayList.add(R.drawable.profile);
         arrayList.add(R.drawable.profile);
         arrayList.add(R.drawable.ic_logout);
 

@@ -12,11 +12,11 @@
 
 
 
-    <ImageView
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
         android:layout_gravity="center"
-        android:src="@drawable/logo"
+        android:src="@drawable/erplogoback"
         android:layout_marginTop="@dimen/_50sdp"
         />
 

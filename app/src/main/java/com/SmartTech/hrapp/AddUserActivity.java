@@ -10,12 +10,9 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.SmartTech.hrapp.Adapter.ViewPagerAdapter;
-import com.SmartTech.hrapp.Custom.Myvollysinglton;
-import com.SmartTech.hrapp.Dialogs.MyProgressDialog;
 import com.SmartTech.hrapp.Fragment.FirstAddFragment;
 import com.SmartTech.hrapp.Fragment.SecondAddFragment;
 import com.SmartTech.hrapp.Fragment.SubmitAddFragment;
-import com.SmartTech.hrapp.InterFaces.OnPressView;
 import com.SmartTech.hrapp.Views.TabLayoutViews;
 
 import java.util.ArrayList;

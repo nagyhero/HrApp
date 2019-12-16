@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="@dimen/_5sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layoutDirection="ltr"
+            android:weightSum="5"
+            android:padding="@dimen/_3sdp"
+            >
+
+            <TextView
+                android:id="@+id/r_vac_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/app_name"
+                android:fontFamily="@font/pop_bold"
+                android:textColor="@android:color/black"
+                />
+
+            <TextView
+                android:id="@+id/r_vac_countPosition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.4"
+                android:text="@string/app_name"
+                android:fontFamily="@font/pop_regular"
+                android:textAlignment="center"
+                />
+
+            <TextView
+                android:id="@+id/r_vac_ratio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.4"
+                android:text="@string/ratio"
+                android:fontFamily="@font/pop_regular"
+                android:textColor="@color/custom2"
+                android:textAlignment="center"
+                />
+
+            <!--more-->
+
+            <ImageView
+                android:id="@+id/r_vac_more"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_more2"
+                android:tint="@color/colorAccent"
+                android:layout_gravity="right"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/r_vac_lastDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lastupdate"
+            android:fontFamily="@font/pop_regular"
+            android:textColor="@android:color/black"
+            android:padding="@dimen/_5sdp"/>
+
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/r_vac_clickcontainer"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle1"
+            android:padding="@dimen/_5sdp"
+            android:backgroundTint="@color/hollowcustom4"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/view_details"
+                android:layout_centerInParent="true"
+                android:textAlignment="center"
+                android:fontFamily="@font/pop_bold"
+                android:textColor="@color/colorAccent"
+
+
+                />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

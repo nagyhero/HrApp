@@ -8,25 +8,28 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute"
-        tools:replace="android:icon"
-        android:networkSecurityConfig="@xml/network_security_config"
-        >
-        <activity android:name=".FPDetailsActivity"/>
-        <activity android:name=".AddDeviceActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden"
-            />
+        tools:replace="android:icon">
+        <activity android:name=".VacationDetailsActivity"></activity>
+        <activity android:name=".VacationsRequestActivity" />
+        <activity android:name=".AddVacationActivity" />
+        <activity android:name=".VacationsActivity" />
+        <activity android:name=".FPDetailsActivity" />
+        <activity
+            android:name=".AddDeviceActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
         <activity android:name=".DevicesActivity" />
         <activity
             android:name=".AddUserActivity"
@@ -54,14 +57,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"/>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false"
-            tools:ignore="WrongManifestParent"/>
+            tools:ignore="WrongManifestParent" />
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import com.SmartTech.hrapp.Holder.MenuHolder;
 import com.SmartTech.hrapp.Holder.NotificationsHolder;
 import com.SmartTech.hrapp.Holder.SettingHolder;
 import com.SmartTech.hrapp.Holder.UsersHolder;
+import com.SmartTech.hrapp.Holder.VacationsHolder;
 import com.SmartTech.hrapp.R;
 
 public class MyViewHolder {
@@ -50,5 +51,11 @@ public class MyViewHolder {
         View view= LayoutInflater.from(context).inflate(R.layout.recycler_attendance
                 ,viewGroup,false);
         return  new AttendanceHolder(view);
+    }
+
+    public static VacationsHolder vacationsHolder(Context context, ViewGroup viewGroup){
+        View view= LayoutInflater.from(context).inflate(R.layout.recycler_vacations
+                ,viewGroup,false);
+        return  new VacationsHolder(view);
     }
 }

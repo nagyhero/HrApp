@@ -2,6 +2,7 @@ package com.SmartTech.hrapp.Custom;
 
 import android.content.Context;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -35,10 +36,10 @@ public class Myvollysinglton {
 
       // cancel("req");
         request.setTag("req");
-       /* request.setRetryPolicy(new DefaultRetryPolicy(
-                5000,
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*/
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(request);
     }
     

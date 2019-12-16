@@ -28,6 +28,7 @@
         <item>My Account</item>
         <item>Users</item>
         <item>FB Devices</item>
+        <item>Vacations</item>
         <item>Logout</item>
     </string-array>
 
@@ -39,6 +40,12 @@
     <string-array name="menu_titles_d">
         <item>Show All Devices</item>
         <item>Add New Device</item>
+    </string-array>
+
+    <string-array name="menu_titles_vac">
+        <item>Show All Vacations</item>
+        <item>Add New Vacation</item>
+        <item>Vacation requests</item>
     </string-array>
 
     <string-array name="menu_titlesforuser">
@@ -98,5 +105,8 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="errorconn">error in connection</string>
+    <string name="vacations">Vacations</string>
+    <string name="ratio">Ratio</string>
+    <string name="postions_has_vac">positions</string>
 
 </resources>

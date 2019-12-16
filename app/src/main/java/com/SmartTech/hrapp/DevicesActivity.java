@@ -181,10 +181,7 @@ public class DevicesActivity extends MyActivity {
                 shimmerContainer.setVisibility(View.GONE);
             }
         }));
-          request.setRetryPolicy(new DefaultRetryPolicy(
-                10000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
 
         Myvollysinglton.getInstance(getContext()).addtorequst(request);
     }
@@ -246,7 +243,7 @@ public class DevicesActivity extends MyActivity {
                     public void onClick(SweetAlertDialog sDialog) {
                         // go to delete server
                         sDialog.dismissWithAnimation();
-                        deleteUserFromServer(position);
+                        deleteDeviceFromServer(position);
 
                     }
                 })
@@ -266,7 +263,7 @@ public class DevicesActivity extends MyActivity {
                 .show();
     }
 
-    private void deleteUserFromServer(int position){
+    private void deleteDeviceFromServer(int position){
         getProgressToShow().show();
         getProgress().dismissWithAnimation();
     }
