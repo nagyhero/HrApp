@@ -137,6 +137,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuHolder> {
                       public void onOpened() {
                           holder.arrow.animate().rotation(90).start();
 
+
                       }
 
                       @Override
