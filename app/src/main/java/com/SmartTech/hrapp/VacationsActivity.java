@@ -78,7 +78,7 @@ public class VacationsActivity extends MyActivity {
             }
         });
 
-        // add users
+        // add
         imageAdd.setVisibility(View.VISIBLE);
         imageAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +110,7 @@ public class VacationsActivity extends MyActivity {
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
-        recyclerView.addItemDecoration(new SpaceRecycler_V(MySizes.gethight(getContext())/50));
+        recyclerView.addItemDecoration(new SpaceRecycler_V(MySizes.gethight(getContext())/60));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),RecyclerView.VERTICAL));
         recyclerView.setAdapter(adapter);
 

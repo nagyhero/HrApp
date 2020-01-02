@@ -53,7 +53,19 @@ public class MyActivity extends AppCompatActivity {
 
         return getDomain()+"api/vacations";
     }
+    public String getPositionsUrl(){
 
+        return getDomain()+"api/positions";
+    }
+    public String getDepartmentsUrl(){
+
+        return getDomain()+"api/departments";
+    }
+
+    public String getBranchesUrl(){
+
+        return getDomain()+"api/branches";
+    }
     public String getPathImageUser(){
 
         return getDomain()+"imgs/users/";
@@ -91,6 +103,9 @@ public class MyActivity extends AppCompatActivity {
         arrayList.add(R.drawable.ic_dashboard);
         arrayList.add(R.drawable.ic_user);
         arrayList.add(R.drawable.ic_user);
+        arrayList.add(R.drawable.profile);
+        arrayList.add(R.drawable.profile);
+        arrayList.add(R.drawable.profile);
         arrayList.add(R.drawable.profile);
         arrayList.add(R.drawable.profile);
         arrayList.add(R.drawable.ic_logout);

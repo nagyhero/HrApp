@@ -6,10 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.SmartTech.hrapp.Holder.AttendanceHolder;
+import com.SmartTech.hrapp.Holder.BranchesHolder;
+import com.SmartTech.hrapp.Holder.DepartmentsHolder;
 import com.SmartTech.hrapp.Holder.DeviceHolder;
 import com.SmartTech.hrapp.Holder.HeadCardHolder;
 import com.SmartTech.hrapp.Holder.MenuHolder;
 import com.SmartTech.hrapp.Holder.NotificationsHolder;
+import com.SmartTech.hrapp.Holder.PositionsHolder;
 import com.SmartTech.hrapp.Holder.SettingHolder;
 import com.SmartTech.hrapp.Holder.UsersHolder;
 import com.SmartTech.hrapp.Holder.VacationsHolder;
@@ -57,5 +60,25 @@ public class MyViewHolder {
         View view= LayoutInflater.from(context).inflate(R.layout.recycler_vacations
                 ,viewGroup,false);
         return  new VacationsHolder(view);
+    }
+
+    public static PositionsHolder positionsHolder(Context context,ViewGroup viewGroup){
+        View view= LayoutInflater.from(context).inflate(R.layout.recycler_positions
+                ,viewGroup,false);
+
+        return new PositionsHolder(view);
+
+    }
+
+    public static DepartmentsHolder departmentsHolder(Context context,ViewGroup viewGroup){
+        View view= LayoutInflater.from(context).inflate(R.layout.recycler_departments
+                ,viewGroup,false);
+        return new DepartmentsHolder(view);
+    }
+
+    public static BranchesHolder branchesHolder(Context context, ViewGroup viewGroup){
+        View view= LayoutInflater.from(context).inflate(R.layout.recycler_departments
+                ,viewGroup,false);
+        return new BranchesHolder(view);
     }
 }

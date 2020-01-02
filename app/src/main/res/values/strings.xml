@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">smart HR</string>
+    <string name="app_name">Smart-HR</string>
     <string name="copied">cpoied</string>
     <string name="login">Sign In</string>
     <string name="loading">Loading</string>
@@ -29,6 +29,9 @@
         <item>Users</item>
         <item>FB Devices</item>
         <item>Vacations</item>
+        <item>Positions</item>
+        <item>Departments</item>
+        <item>Branches</item>
         <item>Logout</item>
     </string-array>
 
@@ -42,11 +45,28 @@
         <item>Add New Device</item>
     </string-array>
 
+    <string-array name="menu_titles_position">
+        <item>Show All Positions</item>
+        <item>Add New Positions</item>
+    </string-array>
+
+
+    <string-array name="menu_titles_departments">
+        <item>Show All Departments</item>
+        <item>Add New Departments</item>
+    </string-array>
+
+    <string-array name="menu_titles_branches">
+        <item>Show All Branches</item>
+        <item>Add New Branch</item>
+    </string-array>
+
     <string-array name="menu_titles_vac">
         <item>Show All Vacations</item>
         <item>Add New Vacation</item>
         <item>Vacation requests</item>
     </string-array>
+
 
     <string-array name="menu_titlesforuser">
         <item>OverView</item>
@@ -108,5 +128,8 @@
     <string name="vacations">Vacations</string>
     <string name="ratio">Ratio</string>
     <string name="postions_has_vac">positions</string>
+    <string name="positions">Positions</string>
+    <string name="departments">Departments</string>
+    <string name="branches">Branches</string>
 
 </resources>

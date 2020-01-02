@@ -16,10 +16,16 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.SmartTech.hrapp.AddBranchActivity;
+import com.SmartTech.hrapp.AddDepartmentActivity;
 import com.SmartTech.hrapp.AddDeviceActivity;
+import com.SmartTech.hrapp.AddPositionActivity;
 import com.SmartTech.hrapp.AddVacationActivity;
+import com.SmartTech.hrapp.BranchsActivity;
+import com.SmartTech.hrapp.DepartmentsActivity;
 import com.SmartTech.hrapp.DevicesActivity;
 import com.SmartTech.hrapp.Fragment.AccountFragment;
+import com.SmartTech.hrapp.PositionsActivity;
 import com.SmartTech.hrapp.VacationsActivity;
 import com.SmartTech.hrapp.VacationsRequestActivity;
 import com.android.volley.toolbox.StringRequest;
@@ -203,7 +209,7 @@ public class HomeActivity extends MyActivity {
                 String[] menuTtiles2=getResources().getStringArray(R.array.menu_titles_d);
                 int[] menuIcons2={android.R.drawable.btn_radio,android.R.drawable.btn_radio};
 
-                // second menu items for users
+                //  menu items for devices
                 for (int mi=0;mi<menuTtiles2.length;mi++) {
                     MenuModel themodel = new MenuModel();
                     themodel.setTitle(menuTtiles2[mi]);
@@ -217,7 +223,55 @@ public class HomeActivity extends MyActivity {
                 String[] menuTtiles3=getResources().getStringArray(R.array.menu_titles_vac);
                 int[] menuIcons3={android.R.drawable.btn_radio,android.R.drawable.btn_radio,android.R.drawable.btn_radio};
 
-                // second menu items for users
+                //  menu items for vacations
+                for (int mi=0;mi<menuTtiles3.length;mi++) {
+                    MenuModel themodel = new MenuModel();
+                    themodel.setTitle(menuTtiles3[mi]);
+                    themodel.setIcon(menuIcons3[mi]);
+                    mlist.add(themodel);
+                }
+                model.setListInside(mlist);
+            }
+            else if (i==5){
+                //  menu items for position
+
+                ArrayList<MenuModel> mlist=new ArrayList<>();
+                String[] menuTtiles3=getResources().getStringArray(R.array.menu_titles_position);
+                int[] menuIcons3={android.R.drawable.btn_radio,android.R.drawable.btn_radio};
+
+
+                for (int mi=0;mi<menuTtiles3.length;mi++) {
+                    MenuModel themodel = new MenuModel();
+                    themodel.setTitle(menuTtiles3[mi]);
+                    themodel.setIcon(menuIcons3[mi]);
+                    mlist.add(themodel);
+                }
+                model.setListInside(mlist);
+            } else if (i==6){
+                //  menu items for departments
+
+                ArrayList<MenuModel> mlist=new ArrayList<>();
+                String[] menuTtiles3=getResources().getStringArray(R.array.menu_titles_departments);
+                int[] menuIcons3={android.R.drawable.btn_radio,android.R.drawable.btn_radio};
+
+
+                for (int mi=0;mi<menuTtiles3.length;mi++) {
+                    MenuModel themodel = new MenuModel();
+                    themodel.setTitle(menuTtiles3[mi]);
+                    themodel.setIcon(menuIcons3[mi]);
+                    mlist.add(themodel);
+                }
+                model.setListInside(mlist);
+            }
+
+            else if (i==7){
+                //  menu items for branches
+
+                ArrayList<MenuModel> mlist=new ArrayList<>();
+                String[] menuTtiles3=getResources().getStringArray(R.array.menu_titles_branches);
+                int[] menuIcons3={android.R.drawable.btn_radio,android.R.drawable.btn_radio};
+
+
                 for (int mi=0;mi<menuTtiles3.length;mi++) {
                     MenuModel themodel = new MenuModel();
                     themodel.setTitle(menuTtiles3[mi]);
@@ -261,16 +315,10 @@ public class HomeActivity extends MyActivity {
 
                         break;
 
-                    case 2:
 
-
-                    case 3:
-
-                    case 4:
-
-
-                        break;
-                    case 5:
+                        // 2->users 3->devices 4->vacations 5->positions 6->departments
+                    // 7->branches
+                    case 8:
 
                         alertLogoutDilaog();
 
@@ -286,6 +334,7 @@ public class HomeActivity extends MyActivity {
                 switch (position) {
 
 
+                    // users
                     case 2:
                         if (position2==0){
 
@@ -302,6 +351,7 @@ public class HomeActivity extends MyActivity {
 
                         break;
 
+                        // devices
                     case 3:
 
                         if (position2==0){
@@ -319,6 +369,7 @@ public class HomeActivity extends MyActivity {
                         break;
 
                     case 4:
+                        // vacations
 
                         if (position2==0){
                             // vacations
@@ -339,6 +390,58 @@ public class HomeActivity extends MyActivity {
 
                         }
                         break;
+
+                    case 5:
+                        // positions
+
+                        if (position2==0){
+                            // positions
+                            startActivity(new Intent(getContext(), PositionsActivity.class));
+                            overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
+
+                        }else if (position2==1){
+
+                            // positions
+                            startActivity(new Intent(getContext(), AddPositionActivity.class));
+                            overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
+
+                        }
+                        break;
+
+                    case 6:
+                        // departments
+
+                        if (position2==0){
+                            // departments
+                            startActivity(new Intent(getContext(), DepartmentsActivity.class));
+                            overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
+
+                        }else if (position2==1){
+
+                            // add departments
+                            startActivity(new Intent(getContext(), AddDepartmentActivity.class));
+                            overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
+
+                        }
+                        break;
+
+                    case 7:
+                        // branches
+
+                        if (position2==0){
+                            // branches
+                            startActivity(new Intent(getContext(), BranchsActivity.class));
+                            overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
+
+                        }else if (position2==1){
+
+                            // add branch
+                            startActivity(new Intent(getContext(), AddBranchActivity.class));
+                            overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
+
+                        }
+                        break;
+
                 }
             }
         });
