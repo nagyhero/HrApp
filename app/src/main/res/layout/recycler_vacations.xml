@@ -65,7 +65,6 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_more2"
                 android:tint="@color/colorAccent"
-                android:layout_gravity="right"
                 />
 
         </LinearLayout>

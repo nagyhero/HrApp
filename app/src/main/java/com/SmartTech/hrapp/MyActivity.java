@@ -92,10 +92,8 @@ public class MyActivity extends AppCompatActivity {
     }
 
     public ArrayList<String> getAdminTitles(){
-        ArrayList<String> arrayList=new ArrayList<>();
         String[] list=getResources().getStringArray(R.array.menu_titles);
-        arrayList.addAll(Arrays.asList(list));
-        return arrayList;
+        return new ArrayList<>(Arrays.asList(list));
     }
 
     public ArrayList<Integer> getAdminIcons(){
@@ -103,11 +101,11 @@ public class MyActivity extends AppCompatActivity {
         arrayList.add(R.drawable.ic_dashboard);
         arrayList.add(R.drawable.ic_user);
         arrayList.add(R.drawable.ic_user);
-        arrayList.add(R.drawable.profile);
-        arrayList.add(R.drawable.profile);
-        arrayList.add(R.drawable.profile);
-        arrayList.add(R.drawable.profile);
-        arrayList.add(R.drawable.profile);
+        arrayList.add(R.drawable.ic_devices);
+        arrayList.add(R.drawable.ic_vacations);
+        arrayList.add(R.drawable.ic_positions);
+        arrayList.add(R.drawable.ic_departments);
+        arrayList.add(R.drawable.ic_branches);
         arrayList.add(R.drawable.ic_logout);
 
         return arrayList;

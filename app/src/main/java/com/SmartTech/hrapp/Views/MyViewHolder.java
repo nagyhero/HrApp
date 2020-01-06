@@ -77,7 +77,7 @@ public class MyViewHolder {
     }
 
     public static BranchesHolder branchesHolder(Context context, ViewGroup viewGroup){
-        View view= LayoutInflater.from(context).inflate(R.layout.recycler_departments
+        View view= LayoutInflater.from(context).inflate(R.layout.recycler_branches
                 ,viewGroup,false);
         return new BranchesHolder(view);
     }

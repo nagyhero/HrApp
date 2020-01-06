@@ -102,15 +102,15 @@ public class PositionsActivity extends MyActivity {
     }
 
     private void loadPositions() {
-       /* // shimmer
+        // shimmer
         shimmerContainer.setVisibility(View.VISIBLE);
-        shimmerContainer.startShimmerAnimation();*/
+        shimmerContainer.startShimmerAnimation();
 
         StringRequest request=new MyRequest(getToken(),0,getPositionsUrl(),new OnSuccessRequest(getContext(), new SuccessCall() {
             @Override
             public void OnBack(JSONObject object) {
                 // shimmer
-              //  shimmerContainer.setVisibility(View.GONE);
+              shimmerContainer.setVisibility(View.GONE);
 
 
                 // id , name , employees , avg_salary , due_day
@@ -120,7 +120,23 @@ public class PositionsActivity extends MyActivity {
                         JSONArray array = object.getJSONArray("success");
                         for (int i = 0 ;i<array.length();i++){
 
-                            JSONObject PosObject = array.getJSONObject(i);
+                            JSONObject posObject = array.getJSONObject(i);
+
+                            String id =posObject.getString("id");
+                            String name =posObject.getString("name");
+                            String employees =posObject.getString("employees");
+                            String avgSalary =posObject.getString("avg_salary");
+                            String dueDay =posObject.getString("due_day");
+
+                            PositionsModel model =new PositionsModel();
+                            model.setId(id);
+                            model.setName(name);
+                            model.setEmployees(employees);
+                            model.setAvg_salary(avgSalary);
+                            model.setDue_day(dueDay);
+
+                            arrayList.add(model);
+                            adapter.notifyDataSetChanged();
 
 
                         }
@@ -135,7 +151,7 @@ public class PositionsActivity extends MyActivity {
             @Override
             public void OnBack() {
                 // shimmer
-             //   shimmerContainer.setVisibility(View.GONE);
+               shimmerContainer.setVisibility(View.GONE);
 
             }
         }));

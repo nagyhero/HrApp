@@ -1,6 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_5sdp"
+    >
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layoutDirection="ltr"
+            android:weightSum="4"
+            android:padding="@dimen/_3sdp"
+            >
+            <TextView
+                android:id="@+id/r_bran_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="@string/app_name"
+                android:fontFamily="@font/pop_bold"
+                android:textColor="@android:color/black"
+                />
+
+            <TextView
+                android:id="@+id/r_bran_countUsers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/users"
+                android:fontFamily="@font/pop_regular"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/r_bran_countDepartments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.3"
+                android:text="@string/departments"
+                android:fontFamily="@font/pop_regular"
+                android:textAlignment="center"
+                />
+            <ImageView
+                android:id="@+id/r_bran_more"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_more2"
+                android:tint="@color/colorAccent"
+                />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/r_bran_clickcontainer"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle1"
+            android:padding="@dimen/_5sdp"
+            android:backgroundTint="@color/hollowcustom4"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/view_details"
+                android:layout_centerInParent="true"
+                android:textAlignment="center"
+                android:fontFamily="@font/pop_bold"
+                android:textColor="@color/colorAccent"
+
+
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

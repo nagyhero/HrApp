@@ -105,25 +105,38 @@ public class BranchsActivity extends MyActivity {
     }
 
     private void loadBranches() {
-       /* // shimmer
+        // shimmer
         shimmerContainer.setVisibility(View.VISIBLE);
-        shimmerContainer.startShimmerAnimation();*/
+        shimmerContainer.startShimmerAnimation();
 
         StringRequest request=new MyRequest(getToken(),0,getBranchesUrl(),new OnSuccessRequest(getContext(), new SuccessCall() {
             @Override
             public void OnBack(JSONObject object) {
                 // shimmer
-                //  shimmerContainer.setVisibility(View.GONE);
+                 shimmerContainer.setVisibility(View.GONE);
 
-                // id , name , employees
+                // id , name , employees , departments
 
                 if (object!=null){
                     try {
                         JSONArray array = object.getJSONArray("success");
                         for (int i = 0 ;i<array.length();i++){
 
-                            JSONObject DEPObject = array.getJSONObject(i);
+                            JSONObject branObject = array.getJSONObject(i);
 
+                            String id= branObject.getString("id");
+                            String name= branObject.getString("name");
+                            String employees= branObject.getString("employees");
+                            String departments= branObject.getString("departments");
+
+                            BranchesModel model=new BranchesModel();
+                            model.setId(id);
+                            model.setName(name);
+                            model.setEmployees(employees);
+                            model.setDepartments(departments);
+
+                            arrayList.add(model);
+                            adapter.notifyDataSetChanged();
 
                         }
                     } catch (JSONException e) {
@@ -137,7 +150,7 @@ public class BranchsActivity extends MyActivity {
             @Override
             public void OnBack() {
                 // shimmer
-                //   shimmerContainer.setVisibility(View.GONE);
+                   shimmerContainer.setVisibility(View.GONE);
 
             }
         }));

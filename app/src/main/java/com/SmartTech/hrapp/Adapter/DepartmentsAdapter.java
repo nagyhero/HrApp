@@ -1,6 +1,7 @@
 package com.SmartTech.hrapp.Adapter;
 
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -33,7 +34,30 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<DepartmentsHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DepartmentsHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DepartmentsHolder holder, final int position) {
+
+        DepartmentsModel model =arrayList.get(position);
+
+        // click
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onPress.onClick(v,position);
+            }
+        });
+
+        // click more
+        holder.imageMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onPressMore.onClick(v,position);
+            }
+        });
+
+
+        holder.name.setText(model.getName());
+
+        holder.count.append(" " + model.getEmployees());
 
     }
 

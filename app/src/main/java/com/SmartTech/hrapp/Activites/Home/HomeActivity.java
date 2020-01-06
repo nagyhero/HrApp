@@ -22,6 +22,8 @@ import com.SmartTech.hrapp.AddDeviceActivity;
 import com.SmartTech.hrapp.AddPositionActivity;
 import com.SmartTech.hrapp.AddVacationActivity;
 import com.SmartTech.hrapp.BranchsActivity;
+import com.SmartTech.hrapp.Custom.MySizes;
+import com.SmartTech.hrapp.Custom.SpaceRecycler_V;
 import com.SmartTech.hrapp.DepartmentsActivity;
 import com.SmartTech.hrapp.DevicesActivity;
 import com.SmartTech.hrapp.Fragment.AccountFragment;
@@ -115,6 +117,8 @@ public class HomeActivity extends MyActivity {
         });
 
         // menu
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+        recyclerView.addItemDecoration(new SpaceRecycler_V(MySizes.gethight(getContext())/100));
         if (getRole().equals("hr")) {
             initMenuForHr();
             MyFragment.changeLoginFragment(this,new AdminHomeFragment(),R.id.myhome_container,0,0);
@@ -445,7 +449,7 @@ public class HomeActivity extends MyActivity {
                 }
             }
         });
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+
         recyclerView.setAdapter(menuAdapter);
     }
 
@@ -502,7 +506,6 @@ public class HomeActivity extends MyActivity {
                ;
             }
         }, null);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
         recyclerView.setAdapter(menuAdapter);
     }
 

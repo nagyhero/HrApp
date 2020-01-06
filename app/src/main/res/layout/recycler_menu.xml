@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_right"
         android:layout_alignParentRight="true"
-        android:tint="@android:color/white"
+        android:tint="@color/hollowcustom2"
         />
 
     </RelativeLayout>

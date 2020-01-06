@@ -104,15 +104,15 @@ public class DepartmentsActivity extends MyActivity {
 
 
     private void loadDepartments() {
-       /* // shimmer
+        // shimmer
         shimmerContainer.setVisibility(View.VISIBLE);
-        shimmerContainer.startShimmerAnimation();*/
+        shimmerContainer.startShimmerAnimation();
 
         StringRequest request=new MyRequest(getToken(),0,getDepartmentsUrl(),new OnSuccessRequest(getContext(), new SuccessCall() {
             @Override
             public void OnBack(JSONObject object) {
                 // shimmer
-              //  shimmerContainer.setVisibility(View.GONE);
+               shimmerContainer.setVisibility(View.GONE);
 
                 // id , name , employees 
 
@@ -121,7 +121,19 @@ public class DepartmentsActivity extends MyActivity {
                         JSONArray array = object.getJSONArray("success");
                         for (int i = 0 ;i<array.length();i++){
 
-                            JSONObject DEPObject = array.getJSONObject(i);
+                            JSONObject dEPObject = array.getJSONObject(i);
+
+                            String id = dEPObject.getString("id");
+                            String name = dEPObject.getString("name");
+                            String employees = dEPObject.getString("employees");
+
+                            DepartmentsModel model = new DepartmentsModel();
+                            model.setId(id);
+                            model.setName(name);
+                            model.setEmployees(employees);
+
+                            arrayList.add(model);
+                            adapter.notifyDataSetChanged();
 
 
                         }
@@ -136,7 +148,7 @@ public class DepartmentsActivity extends MyActivity {
             @Override
             public void OnBack() {
                 // shimmer
-                //   shimmerContainer.setVisibility(View.GONE);
+                shimmerContainer.setVisibility(View.GONE);
 
             }
         }));
