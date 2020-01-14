@@ -1,15 +1,22 @@
 package com.SmartTech.hrapp;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+
 import android.widget.TextView;
 
 import com.SmartTech.hrapp.Adapter.BranchesAdapter;
@@ -24,6 +31,7 @@ import com.SmartTech.hrapp.InterFaces.ErrorCall;
 import com.SmartTech.hrapp.InterFaces.OnPress;
 import com.SmartTech.hrapp.InterFaces.SuccessCall;
 import com.SmartTech.hrapp.Model.BranchesModel;
+import com.SmartTech.hrapp.Model.VacationsModel;
 import com.android.volley.toolbox.StringRequest;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
@@ -33,11 +41,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class BranchsActivity extends MyActivity {
 
     private Toolbar toolbar;
     private TextView title;
-    private View backView;
+    private ImageView backView;
     private ImageView imageAdd;
 
     private RecyclerView recyclerView;
@@ -57,7 +67,7 @@ public class BranchsActivity extends MyActivity {
         recyclerView=(RecyclerView)findViewById(R.id.recycler_branches);
         toolbar=(Toolbar)findViewById(R.id.branches_toolbar);
         title=(TextView)toolbar.findViewById(R.id.t_normal_title);
-        backView=(View) toolbar.findViewById(R.id.t_normal_back);
+        backView=(ImageView) toolbar.findViewById(R.id.t_normal_back);
         imageAdd=(ImageView)toolbar.findViewById(R.id.t_normal_add);
         shimmerContainer = (ShimmerFrameLayout) findViewById(R.id.branches_shimmer);
 
@@ -90,8 +100,10 @@ public class BranchsActivity extends MyActivity {
 
             }
         }, new OnPress() {
+            @RequiresApi(api = Build.VERSION_CODES.Q)
             @Override
             public void onClick(View view, int position) {
+                popUp(view,position);
 
             }
         });
@@ -156,6 +168,77 @@ public class BranchsActivity extends MyActivity {
         }));
 
         Myvollysinglton.getInstance(this).addtorequst(request);
+    }
+
+    // pop up menu
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    private void popUp(View view, final int position){
+        PopupMenu popupMenu=new PopupMenu(getContext(),view);
+        popupMenu.getMenuInflater().inflate(R.menu.user_menu,popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                BranchesModel model = arrayList.get(position);
+                int id=item.getItemId();
+
+                switch (id){
+                    case R.id.menu_u_edit:
+
+                        startActivity(new Intent(getContext(), AddBranchActivity.class)
+                                .putExtra("is_edit",true)
+                                .putExtra("id",model.getId())
+                                .putExtra("name",model.getName())
+                        );
+                        overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
+
+                        break;
+                    case R.id.menu_u_delete:
+
+                        showDeleteDialogAlert(position);
+
+                        break;
+
+                }
+                return true;
+            }
+        });
+
+        MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popupMenu.getMenu(),view);
+        menuHelper.setForceShowIcon(true);
+        menuHelper.show();
+    }
+
+    private void showDeleteDialogAlert(final int position){
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText(getString(R.string.are_you_sure)+"  "+arrayList.get(position).getName()+" !")
+                // .setContentText("Won't be able to recover this file!")
+                .setCancelText(getResources().getString(R.string.no_cancel))
+                .setConfirmText(getResources().getString(R.string.yes_delete))
+                .showCancelButton(true)
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        // go to delete server
+                        sDialog.dismissWithAnimation();
+                        // deleteDeviceFromServer(position);
+
+                    }
+                })
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        // reuse previous dialog instance, keep widget user state, reset them if you need
+                        sDialog.setTitleText(getResources().getString(R.string.cancelled))
+                                // .setContentText("Your imaginary file is safe :)")
+                                .setConfirmText(getString(R.string.ok))
+                                .showCancelButton(false)
+                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+
+                    }
+                })
+
+                .show();
     }
 
     @Override

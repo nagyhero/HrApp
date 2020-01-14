@@ -2,6 +2,9 @@ package com.SmartTech.hrapp;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,7 +17,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.SmartTech.hrapp.Activites.Users.UsersActivity;
@@ -53,7 +55,7 @@ public class DevicesActivity extends MyActivity {
 
     private Toolbar toolbar;
     private TextView title;
-    private View backView;
+    private ImageView backView;
     private ImageView imageAdd;
 
     private RecyclerView recyclerView;
@@ -73,7 +75,7 @@ public class DevicesActivity extends MyActivity {
         recyclerView=(RecyclerView)findViewById(R.id.recycler_devices);
         toolbar=(Toolbar)findViewById(R.id.devices_toolbar);
         title=(TextView)toolbar.findViewById(R.id.t_normal_title);
-        backView=(View) toolbar.findViewById(R.id.t_normal_back);
+        backView=(ImageView) toolbar.findViewById(R.id.t_normal_back);
         imageAdd=(ImageView)toolbar.findViewById(R.id.t_normal_add);
         shimmerContainer = (ShimmerFrameLayout) findViewById(R.id.devices_shimmer);
 
@@ -228,7 +230,9 @@ public class DevicesActivity extends MyActivity {
             }
         });
 
-        popupMenu.show();
+        MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popupMenu.getMenu(),view);
+        menuHelper.setForceShowIcon(true);
+        menuHelper.show();
     }
 
     private void showDeleteDialogAlert(final int position){

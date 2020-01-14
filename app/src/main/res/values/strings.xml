@@ -133,5 +133,18 @@
     <string name="branches">Branches</string>
     <string name="average_salary">Average Salary : </string>
     <string name="due_day">Due Day : </string>
+    <string name="phone_number">Phone Number</string>
+    <string name="vacation_info">Vacation Info</string>
+    <string name="name">Name</string>
+    <string name="default_data">Default Data</string>
+    <string name="days">Days</string>
+    <string name="minimum_1_day_and_maximum_360_days">minimum 1 Day And maximum 360 Days.</string>
+    <string name="paid_vacation">Paid Vacation</string>
+    <string name="unpaid_vacation">Unpaid Vacation</string>
+    <string name="vacation_type">Vacation Type</string>
+    <string name="deduct_ratio">Deduct Ratio</string>
+    <string name="branch_info">Branch Info</string>
+    <string name="department_info">Department Info</string>
+    <string name="error_require">this field is require</string>
 
 </resources>

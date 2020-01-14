@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -20,7 +21,7 @@ public class SettingActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TextView title;
-    private View backView;
+    private ImageView backView;
 
 
     @Override
@@ -31,7 +32,7 @@ public class SettingActivity extends AppCompatActivity {
         // init
         toolbar=(Toolbar)findViewById(R.id.setting_toolbar);
         title=(TextView)toolbar.findViewById(R.id.t_normal_title);
-        backView=(View) toolbar.findViewById(R.id.t_normal_back);
+        backView=(ImageView) toolbar.findViewById(R.id.t_normal_back);
 
         //title
         title.setText(getResources().getString(R.string.setting));

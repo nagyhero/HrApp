@@ -31,7 +31,7 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             android:paddingTop="@dimen/_20sdp"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/backgound_menu_color"
             >
 
             <LinearLayout
@@ -45,6 +45,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layoutDirection="ltr"
+                    android:paddingVertical="@dimen/_5sdp"
+
                     >
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/home_image"

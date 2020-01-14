@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3e3f62</color>
-    <color name="colorPrimaryDark">#282a3c</color>
+    <color name="colorPrimary">#393957</color>
+    <color name="colorPrimaryDark">#1b1b28</color>
     <color name="colorAccent">#fd397a</color>
 
     <color name="custom1">#5d78ff</color>
@@ -13,6 +13,7 @@
 
 
 
+    <color name="colorPrimaryLight">#DF515283</color>
     <color name="whit_h">#A6FFFFFF</color>
     <color name="hollow">#3BFFFFFF</color>
     <color name="hollowcustom">#4D162574</color>
@@ -22,5 +23,6 @@
     <color name="hollowcustom5">#ffebf1</color>
     <color name="hollowcustom6">#e6f8f3</color>
 
+    <color name="background_holo_light">#26f3f3f3</color>
 
 </resources>

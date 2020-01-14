@@ -1,6 +1,9 @@
 package com.SmartTech.hrapp.Activites.Users;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,12 +18,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.SmartTech.hrapp.AddDeviceActivity;
+;
 import com.android.volley.toolbox.StringRequest;
 import com.SmartTech.hrapp.Adapter.UsersAdapter;
 import com.SmartTech.hrapp.AddUserActivity;
@@ -52,7 +52,7 @@ public class UsersActivity extends MyActivity {
 
     private Toolbar toolbar;
     private TextView title;
-    private View backView;
+    private ImageView backView;
     private ImageView imageAdd;
 
     private EditText search;
@@ -71,7 +71,7 @@ public class UsersActivity extends MyActivity {
         recyclerView=(RecyclerView)findViewById(R.id.recycler_users);
         toolbar=(Toolbar)findViewById(R.id.users_toolbar);
         title=(TextView)toolbar.findViewById(R.id.t_normal_title);
-        backView=(View) toolbar.findViewById(R.id.t_normal_back);
+        backView=(ImageView) toolbar.findViewById(R.id.t_normal_back);
         imageAdd=(ImageView)toolbar.findViewById(R.id.t_normal_add);
         search= (EditText) findViewById(R.id.users_search);
         shimmerContainer = (ShimmerFrameLayout) findViewById(R.id.users_shimmer);
@@ -280,7 +280,9 @@ public class UsersActivity extends MyActivity {
             }
         });
 
-        popupMenu.show();
+        MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popupMenu.getMenu(),view);
+        menuHelper.setForceShowIcon(true);
+        menuHelper.show();
     }
 
     private void showDeleteDialogAlert(final int position){

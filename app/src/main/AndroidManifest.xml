@@ -21,19 +21,24 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute"
         tools:replace="android:icon">
-        <activity android:name=".AddBranchActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden"/>
+        <activity android:name=".PositionDetailsActivity"></activity>
+        <activity
+            android:name=".AddBranchActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
         <activity android:name=".BranchsActivity" />
-        <activity android:name=".AddDepartmentActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden"/>
+        <activity
+            android:name=".AddDepartmentActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
         <activity android:name=".DepartmentsActivity" />
-        <activity android:name=".AddPositionActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden"/>
+        <activity
+            android:name=".AddPositionActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
         <activity android:name=".PositionsActivity" />
         <activity android:name=".VacationDetailsActivity" />
         <activity android:name=".VacationsRequestActivity" />
-        <activity android:name=".AddVacationActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden"/>
+        <activity
+            android:name=".AddVacationActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize|stateHidden" />
         <activity android:name=".VacationsActivity" />
         <activity android:name=".FPDetailsActivity" />
         <activity

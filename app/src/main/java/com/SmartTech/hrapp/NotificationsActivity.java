@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -27,7 +28,7 @@ public class NotificationsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TextView title;
-    private View backView;
+    private ImageView backView;
 
     private RecyclerView recyclerView;
     private ArrayList<NotificationsModel> arrayList=new ArrayList<>();
@@ -44,7 +45,7 @@ public class NotificationsActivity extends AppCompatActivity {
         // init
         toolbar=(Toolbar)findViewById(R.id.notification_toolbar);
         title=(TextView)toolbar.findViewById(R.id.t_normal_title);
-        backView=(View) toolbar.findViewById(R.id.t_normal_back);
+        backView=(ImageView) toolbar.findViewById(R.id.t_normal_back);
         recyclerView=(RecyclerView)findViewById(R.id.recycler_notifications);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
 
@@ -116,5 +117,11 @@ public class NotificationsActivity extends AppCompatActivity {
 
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);
         itemTouchhelper.attachToRecyclerView(recyclerView);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0,R.anim.slide_to_up);
     }
 }

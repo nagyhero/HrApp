@@ -21,7 +21,7 @@ public class UserActivity extends MyActivity {
 
     private Toolbar toolbar;
     private TextView title,textName,textPosition,textEmail,textPhone;
-    private View backView;
+    private ImageView backView;
     private CardView container;
     private ImageView imageView;
 
@@ -48,7 +48,7 @@ public class UserActivity extends MyActivity {
 
         toolbar=(Toolbar)findViewById(R.id.user_toolbar);
         title=(TextView)toolbar.findViewById(R.id.t_user_title);
-        backView=(View) toolbar.findViewById(R.id.t_user_back);
+        backView=(ImageView) toolbar.findViewById(R.id.t_user_back);
         container=(CardView)findViewById(R.id.user_container);
         textName=(TextView)container.findViewById(R.id.cont_name);
         textPosition=(TextView)container.findViewById(R.id.cont_position);

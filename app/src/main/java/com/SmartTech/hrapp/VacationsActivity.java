@@ -2,6 +2,9 @@ package com.SmartTech.hrapp;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,7 +16,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.SmartTech.hrapp.Adapter.DevicesAdapter;
@@ -205,7 +207,9 @@ public class VacationsActivity extends MyActivity {
             }
         });
 
-        popupMenu.show();
+        MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popupMenu.getMenu(),view);
+        menuHelper.setForceShowIcon(true);
+        menuHelper.show();
     }
 
     private void showDeleteDialogAlert(final int position){

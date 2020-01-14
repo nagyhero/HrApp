@@ -27,6 +27,10 @@ public class MyActivity extends AppCompatActivity {
         return getResources().getString(R.string.domain);
     }
 
+    public String getErrorRequire(){
+
+        return getResources().getString(R.string.error_require);
+    }
     public String getToken(){
         return MySharedPref.getdata(getContext(),"token");
     }

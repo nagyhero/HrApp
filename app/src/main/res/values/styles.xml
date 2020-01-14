@@ -18,8 +18,8 @@
 
 
     <style name="CheckboxStyle" parent="AppTheme">
-        <item name="colorAccent">@color/whit_h</item>
-        <item name="android:textColorSecondary">@color/whit_h</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/colorPrimary</item>
     </style>
 
     <style name="TextLabel" parent="TextAppearance.AppCompat">

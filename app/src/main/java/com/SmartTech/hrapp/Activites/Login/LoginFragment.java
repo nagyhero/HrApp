@@ -50,7 +50,7 @@ public class LoginFragment extends MyFragmentCustom {
 
 
     private TextView forgetenPassword,alarmEmail,alarmPassword;
-    private EditText eemail,epassword;
+    private EditText ephone,epassword;
     private Button btn_login;
 
 
@@ -65,7 +65,7 @@ public class LoginFragment extends MyFragmentCustom {
 
         KeyBoardHiding.hide(view,view.getContext());
 
-        eemail=(EditText)view.findViewById(R.id.login_email);
+        ephone=(EditText)view.findViewById(R.id.login_phone);
         epassword=(EditText)view.findViewById(R.id.login_password);
         btn_login=(Button)view.findViewById(R.id.login_btn);
         forgetenPassword=(TextView)view.findViewById(R.id.login_forget);
@@ -85,15 +85,12 @@ public class LoginFragment extends MyFragmentCustom {
 
                 KeyBoardHiding.hide(v,view.getContext());
 
-                String email=eemail.getText().toString().trim();
+                String email=ephone.getText().toString().trim();
                 String password=epassword.getText().toString().trim();
 
                 if (email.length()==0){
                     alarmEmail.setVisibility(View.VISIBLE);
                     alarmEmail.setText(view.getContext().getResources().getString(R.string.this_field_is_required));
-                }else if (!MyEditText.isEmail(email)){
-                    alarmEmail.setVisibility(View.VISIBLE);
-                    alarmEmail.setText(view.getContext().getResources().getString(R.string.valiedemail));
                 }
 
                 else {
@@ -131,7 +128,7 @@ public class LoginFragment extends MyFragmentCustom {
 
 
         // edit email listener
-        eemail.addTextChangedListener(new TextWatcher() {
+        ephone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -141,12 +138,6 @@ public class LoginFragment extends MyFragmentCustom {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.toString().trim().length()>0) {
 
-                    if (!MyEditText.isEmail(s.toString().trim())) {
-                        alarmEmail.setText(view.getContext().getResources().getString(R.string.valiedemail));
-                        alarmEmail.setVisibility(View.VISIBLE);
-                    } else {
-                        alarmEmail.setVisibility(View.INVISIBLE);
-                    }
                 }else {
                     alarmEmail.setVisibility(View.INVISIBLE);
                 }
@@ -174,11 +165,13 @@ public class LoginFragment extends MyFragmentCustom {
 
                 ((MyActivity)getActivity()).getProgress().dismissWithAnimation();
 
+                if (object!=null) {
+
                     try {
                         JSONObject successObject = object.getJSONObject("success");
 
                         // user object
-                        JSONObject jsonObject=successObject.getJSONObject("user");
+                        JSONObject jsonObject = successObject.getJSONObject("user");
                         String id = jsonObject.getString("id");
                         String name = jsonObject.getString("name");
                         String email = jsonObject.getString("email");
@@ -188,21 +181,22 @@ public class LoginFragment extends MyFragmentCustom {
                         // token
                         String token = successObject.getString("token");
 
-                        HashMap<String,String> map=new HashMap<>();
-                        map.put("id",id);
-                        map.put("name",name);
-                        map.put("email",email);
-                        map.put("token",token);
-                        map.put("role",role);
-                        map.put("image",image);
+                        HashMap<String, String> map = new HashMap<>();
+                        map.put("id", id);
+                        map.put("name", name);
+                        map.put("email", email);
+                        map.put("token", token);
+                        map.put("role", role);
+                        map.put("image", image);
 
-                        MySharedPref.setArrayOfData(view.getContext(),map);
+                        MySharedPref.setArrayOfData(view.getContext(), map);
                         startActivity(new Intent(view.getContext(), HomeActivity.class));
-                        getActivity().overridePendingTransition(R.anim.slide_from_righ,R.anim.slide_to_left);
-                        ((Activity)view.getContext()).finish();
+                        getActivity().overridePendingTransition(R.anim.slide_from_righ, R.anim.slide_to_left);
+                        ((Activity) view.getContext()).finish();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                }
 
 
 
@@ -221,7 +215,7 @@ public class LoginFragment extends MyFragmentCustom {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map= new HashMap<>();
-                map.put("email",email);
+                map.put("phone",email);
                 map.put("password",password);
                 return map;
             }

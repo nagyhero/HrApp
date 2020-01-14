@@ -1,5 +1,6 @@
 package com.SmartTech.hrapp.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import android.view.View;
@@ -43,6 +44,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuHolder> {
         return MyViewHolder.menuHolder(context,parent);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull final MenuHolder holder, final int position) {
 
@@ -53,9 +55,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuHolder> {
 
         if (model.isSelected()){
             holder.layout.setBackgroundColor(context.getResources().getColor(R.color.custom1));
-            holder.icon.setBackgroundTintList(context.getResources().getColorStateList(R.color.colorPrimaryDark));
+            holder.icon.setBackgroundTintList(context.getResources().getColorStateList(R.color.colorPrimaryLight));
         }else {
-            holder.layout.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+            holder.layout.setBackgroundColor(android.R.color.transparent);
             holder.icon.setBackgroundTintList(context.getResources().getColorStateList(R.color.custom1));
 
 

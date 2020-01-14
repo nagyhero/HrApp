@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -21,7 +22,7 @@ public class AddUserActivity extends MyActivity {
 
     private Toolbar toolbar;
     private TextView title;
-    private View backView;
+    private ImageView backView;
 
     public static TabLayout tabLayout;
     private ViewPager viewPager;
@@ -48,7 +49,7 @@ public class AddUserActivity extends MyActivity {
         viewPager=(ViewPager)findViewById(R.id.add_viewpager);
         toolbar=(Toolbar)findViewById(R.id.add_toolbar);
         title=(TextView)toolbar.findViewById(R.id.t_normal_title);
-        backView=(View) toolbar.findViewById(R.id.t_normal_back);
+        backView=(ImageView) toolbar.findViewById(R.id.t_normal_back);
 
         if (isEdit){
             getReadyForEdit();

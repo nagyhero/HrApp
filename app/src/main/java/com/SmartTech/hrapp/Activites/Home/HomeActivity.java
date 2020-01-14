@@ -140,6 +140,7 @@ public class HomeActivity extends MyActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivity.this, NotificationsActivity.class));
+                overridePendingTransition(R.anim.slide_from_up,R.anim.fadout);
             }
         });
 

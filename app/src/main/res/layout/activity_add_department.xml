@@ -1,9 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddDepartmentActivity">
+    tools:context=".AddDepartmentActivity"
+    android:background="@android:color/white"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_5sdp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/department_info"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_12sdp"
+            android:fontFamily="@font/pop_bold"/>
+
+        <!-- name-->
+        <LinearLayout
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layoutDirection="ltr"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            android:layout_gravity="center"
+            >
+
+
+
+            <TextView
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/pop_extra_light_italic"
+                android:text="@string/name"
+                android:textAlignment="center"
+
+                />
+
+            <EditText
+                android:id="@+id/add_dep_eName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_stroke"
+                android:padding="@dimen/_6sdp"
+                android:inputType="textNoSuggestions"
+                />
+
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/add_dep_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle1"
+            android:backgroundTint="@color/custom4"
+            android:layout_margin="@dimen/_20sdp"
+            android:text="@string/submit"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/pop_bold"
+            android:textAllCaps="false"
+            />
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>
